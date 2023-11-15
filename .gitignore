@@ -1,0 +1,8 @@
+﻿.idea
+softeng_2023_prj/db.sqlite3
+blog/migrations
+*.sqlite3
+venv
+todo_app/migrations
+single_pages/migrations
+_media
