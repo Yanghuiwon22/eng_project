@@ -12,3 +12,4 @@ def about_me(request):
         request,
         'single_pages/about_me.html'
                   )
+
