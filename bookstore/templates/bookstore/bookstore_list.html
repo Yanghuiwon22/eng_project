@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>project</title>
+    <link rel="stylesheet" href="{% static 'blog/bootstrap/bootstrap.min.css' %}"
+          media="screen">
+</head>
+<body>
+
+    <h1>책 목록</h1>
+
+{% for b in bookstore_list %}
+
+
+{% endfor %}
+</body>
+</html>

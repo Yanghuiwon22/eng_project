@@ -2,7 +2,7 @@ from django.db import models
 import os
 # Create your models here.
 # 게시글 내용
-class Data(models.Model):
+class BookStore(models.Model):
     title = models.CharField(max_length=30)
     content = models.TextField()
 

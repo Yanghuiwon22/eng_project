@@ -41,7 +41,9 @@ INSTALLED_APPS = [
     'blog',
     'single_pages',
     'todo_app',
-    'archive'
+    'archive',
+    'notice',
+    'bookstore',
 ]
 
 MIDDLEWARE = [
