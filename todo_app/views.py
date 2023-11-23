@@ -12,7 +12,7 @@ from .models import ToDoItem, ToDoList
 
 class ListListView(ListView):
     model = ToDoList
-    template_name = "todo_app/index.html"
+    template_name = "todo_app/landing.html"
 
 class ItemListView(ListView):
     model = ToDoItem

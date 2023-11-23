@@ -4,7 +4,7 @@ from django.shortcuts import render
 def landing(request):
     return render(
         request,
-        'single_pages/index.html'
+        'single_pages/landing.html'
                   )
 
 def about_me(request):
@@ -14,6 +14,6 @@ def about_me(request):
                   )
 
 def smartfarm_landing(request):
-    return render(request, 'single_pages/index.html')
+    return render(request, 'single_pages/templates/single_pages/landing.html')
 
 
