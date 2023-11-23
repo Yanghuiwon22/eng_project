@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <nav>
+    <a href="{% url 'smartfarm_landing' %}">
+{#        <img src="{% static 'images/logo.png' %}" alt="스마트팜학과 홈페이지 로고">#}
+    </a>
+
+        <a href="/blog">Blog</a>
+        <a href="/about_me/">About</a>
+        <a href="/archive">archive</a>
+        <a href="/notice">notice</a>
+        <a href="/bookstore">bookstore</a>
+    </nav>
+
+{% block content %}{% endblock %}
+</body>
+</html>
+

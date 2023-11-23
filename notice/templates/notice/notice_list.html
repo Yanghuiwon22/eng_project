@@ -1,19 +1,11 @@
-<!DOCTYPE html>
-{% load static %}
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <title>notice</title>
-    <link rel="stylesheet" href="{% static 'blog/bootstrap/bootstrap.min.css' %}"
-          media="screen">
-</head>
-<body>
+{% extends 'single_pages/layout.html' %}
+
+{% block content %}
+    <title>NOTICE</title>
 
     <h1>공지사항</h1>
+    {% for d in data_list %}
 
-{% for d in data_list %}
 
-
-{% endfor %}
-</body>
-</html>
+    {% endfor %}
+{% endblock %}

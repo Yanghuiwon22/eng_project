@@ -13,3 +13,7 @@ def about_me(request):
         'single_pages/about_me.html'
                   )
 
+def smartfarm_landing(request):
+    return render(request, 'single_pages/landing.html')
+
+

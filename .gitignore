@@ -6,3 +6,6 @@ venv
 todo_app/migrations
 single_pages/migrations
 _media
+archive/migrations
+notice/migrations
+migrations

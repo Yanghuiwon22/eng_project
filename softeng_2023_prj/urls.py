@@ -24,11 +24,11 @@ urlpatterns = [
     path('blog/', include('blog.urls')),
     path('admin/', admin.site.urls),
     path('', include('single_pages.urls')),
-    path('', include("todo_app.urls")),
+    # path('', include("todo_app.urls")),
     path('archive/', include("archive.urls")),
     path('notice/', include("notice.urls")),
-    path('bookstore/', include("bookstore.urls"))
-
+    path('bookstore/', include("bookstore.urls")),
+    # path('reserve_meal/', include('reserve_meal.urls'))
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
