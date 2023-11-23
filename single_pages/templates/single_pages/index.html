@@ -7,13 +7,13 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Impact Bootstrap Template - Index</title>
+  <title>JBNU SMARTFARM</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="static/assets/img/favicon.png" rel="icon">
-  <link href="static/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="static/assets/img/logo.png" rel="icon">
+  <link href="static/assets/img/logo.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -45,8 +45,8 @@
   <section id="topbar" class="topbar d-flex align-items-center">
     <div class="container d-flex justify-content-center justify-content-md-between">
       <div class="contact-info d-flex align-items-center">
-        <i class="bi bi-envelope d-flex align-items-center"><a href="mailto:contact@example.com">contact@example.com</a></i>
-        <i class="bi bi-phone d-flex align-items-center ms-4"><span>+1 5589 55488 55</span></i>
+          <i class="bi bi-printer d-flex align-items-center"><span>+82 063-270-2556</span></i>
+        <i class="bi bi-phone d-flex align-items-center ms-4"><span>+82 063-270-2555 </span></i>
       </div>
       <div class="social-links d-none d-md-flex align-items-center">
 {#        <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>#}
@@ -60,10 +60,10 @@
   <header id="header" class="header d-flex align-items-center">
 
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
-      <a href="index.html" class="logo d-flex align-items-center">
+      <a href="{% url 'smartfarm_landing' %}" class="logo d-flex align-items-center">
         <!-- Uncomment the line below if you also wish to use an image logo -->
-        <!-- <img src="assets/img/logo.png" alt=""> -->
-        <h1>Impact<span>.</span></h1>
+        <img src="assets/img/logo.png" alt="">
+        <h1>SmartFarm<span>.</span></h1>
       </a>
       <nav id="navbar" class="navbar">
         <ul>
@@ -106,15 +106,15 @@
     <div class="container position-relative">
       <div class="row gy-5" data-aos="fade-in">
         <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center text-center text-lg-start">
-          <h2>Welcome to <span>Impact</span></h2>
-          <p>Sed autem laudantium dolores. Voluptatem itaque ea consequatur eveniet. Eum quas beatae cumque eum quaerat.</p>
+          <h2>Welcome to <span>SmartFarm</span></h2>
+          <p>도전정신과 순수한 열정을 가진 사람이라면 우리 학과에서 자신의 꿈을 활짝 펼 수 있을 것입니다.</p>
           <div class="d-flex justify-content-center justify-content-lg-start">
             <a href="#about" class="btn-get-started">Get Started</a>
             <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ" class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>Watch Video</span></a>
           </div>
         </div>
         <div class="col-lg-6 order-1 order-lg-2">
-          <img src="assets/img/hero-img.svg" class="img-fluid" alt="" data-aos="zoom-out" data-aos-delay="100">
+          <img src="{% static 'assets/img/logo.png'%}" class="img-fluid aos-init aos-animate" alt data-aos="zoom-out" data-aos-delay="100">
         </div>
       </div>
     </div>
@@ -282,10 +282,10 @@
           <div class="col-lg-4 col-md-6">
             <div class="service-item  position-relative">
               <div class="icon">
-                <i class="bi bi-activity"></i>
+                <i class="bi bi-calendar"></i>
               </div>
-              <h3>Nesciunt Mete</h3>
-              <p>Provident nihil minus qui consequatur non omnis maiores. Eos accusantium minus dolores iure perferendis tempore et consequatur.</p>
+              <h3>캘린더</h3>
+              <p>학과 홈페이지와 카카오톡에서 제공되는 일정을 모아서 캘린더 형식으로 표현하였다.</p>
               <a href="#" class="readmore stretched-link">Read more <i class="bi bi-arrow-right"></i></a>
             </div>
           </div><!-- End Service Item -->
@@ -293,10 +293,10 @@
           <div class="col-lg-4 col-md-6">
             <div class="service-item position-relative">
               <div class="icon">
-                <i class="bi bi-broadcast"></i>
+                <i class="bi bi-megaphone"></i>
               </div>
-              <h3>Eosle Commodi</h3>
-              <p>Ut autem aut autem non a. Sint sint sit facilis nam iusto sint. Libero corrupti neque eum hic non ut nesciunt dolorem.</p>
+              <h3>공지사항</h3>
+              <p>학과 홈페이지와 카카오톡에서 제공되는 일정을 모아서 올려두었다. 캘린더와 연동되어있다. </p>
               <a href="#" class="readmore stretched-link">Read more <i class="bi bi-arrow-right"></i></a>
             </div>
           </div><!-- End Service Item -->
@@ -304,10 +304,10 @@
           <div class="col-lg-4 col-md-6">
             <div class="service-item position-relative">
               <div class="icon">
-                <i class="bi bi-easel"></i>
+                <i class="bi bi-book"></i>
               </div>
-              <h3>Ledo Markt</h3>
-              <p>Ut excepturi voluptatem nisi sed. Quidem fuga consequatur. Minus ea aut. Vel qui id voluptas adipisci eos earum corrupti.</p>
+              <h3>책방</h3>
+              <p>사용하지 않는 책을 판매 및 구매할 수 있는 서비스</p>
               <a href="#" class="readmore stretched-link">Read more <i class="bi bi-arrow-right"></i></a>
             </div>
           </div><!-- End Service Item -->
@@ -315,10 +315,10 @@
           <div class="col-lg-4 col-md-6">
             <div class="service-item position-relative">
               <div class="icon">
-                <i class="bi bi-bounding-box-circles"></i>
+                <i class="bi bi-arrow-through-heart"></i>
               </div>
-              <h3>Asperiores Commodit</h3>
-              <p>Non et temporibus minus omnis sed dolor esse consequatur. Cupiditate sed error ea fuga sit provident adipisci neque.</p>
+              <h3>밥약</h3>
+              <p>선배와 밥약을 잡기 쑥스러우신가요? 신청만 한다면 선배와 밥약을 매칭시켜드립니다!!</p>
               <a href="#" class="readmore stretched-link">Read more <i class="bi bi-arrow-right"></i></a>
             </div>
           </div><!-- End Service Item -->
@@ -326,10 +326,10 @@
           <div class="col-lg-4 col-md-6">
             <div class="service-item position-relative">
               <div class="icon">
-                <i class="bi bi-calendar4-week"></i>
+                <i class="bi bi-archive"></i>
               </div>
-              <h3>Velit Doloremque</h3>
-              <p>Cumque et suscipit saepe. Est maiores autem enim facilis ut aut ipsam corporis aut. Sed animi at autem alias eius labore.</p>
+              <h3>자료실</h3>
+              <p>선배들이 과제로 만든 프로젝트를 참고하고 싶다면 여기로!! 본인의 프로젝트도 공유해주세요!!</p>
               <a href="#" class="readmore stretched-link">Read more <i class="bi bi-arrow-right"></i></a>
             </div>
           </div><!-- End Service Item -->
@@ -339,8 +339,8 @@
               <div class="icon">
                 <i class="bi bi-chat-square-text"></i>
               </div>
-              <h3>Dolori Architecto</h3>
-              <p>Hic molestias ea quibusdam eos. Fugiat enim doloremque aut neque non et debitis iure. Corrupti recusandae ducimus enim.</p>
+              <h3>학과 앨범</h3>
+              <p>학과 생활이 녹아있는 사진들이 모여있다! 우리의 생활이 궁금하다면??</p>
               <a href="#" class="readmore stretched-link">Read more <i class="bi bi-arrow-right"></i></a>
             </div>
           </div><!-- End Service Item -->
@@ -647,7 +647,7 @@
               <span>Web Development</span>
               <div class="social">
                 <a href=""><i class="bi bi-twitter"></i></a>
-                <a href=""><i class="bi bi-facebook"></i></a>
+{#                <a href=""><i class="bi bi-facebook"></i></a>#}
                 <a href=""><i class="bi bi-instagram"></i></a>
                 <a href=""><i class="bi bi-linkedin"></i></a>
               </div>
@@ -661,7 +661,7 @@
               <span>Marketing</span>
               <div class="social">
                 <a href=""><i class="bi bi-twitter"></i></a>
-                <a href=""><i class="bi bi-facebook"></i></a>
+{#                <a href=""><i class="bi bi-facebook"></i></a>#}
                 <a href=""><i class="bi bi-instagram"></i></a>
                 <a href=""><i class="bi bi-linkedin"></i></a>
               </div>
@@ -997,7 +997,8 @@
                 <i class="bi bi-phone flex-shrink-0"></i>
                 <div>
                   <h4>Call:</h4>
-                  <p>+1 5589 55488 55</p>
+                  <p>+82 063-270-2555</p>
+
                 </div>
               </div><!-- End Info Item -->
 
@@ -1090,7 +1091,7 @@
             A108 Adam Street <br>
             New York, NY 535022<br>
             United States <br><br>
-            <strong>Phone:</strong> +1 5589 55488 55<br>
+            <strong>Phone:</strong> +82 063-270-2555 <br>
             <strong>Email:</strong> info@example.com<br>
           </p>
 
