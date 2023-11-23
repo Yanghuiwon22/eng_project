@@ -6,5 +6,6 @@ class BookStoreList(ListView):
     model = BookStore
     ordering = '-pk'
 
+
 class BookStoreDetail(DetailView):
     model = BookStore
