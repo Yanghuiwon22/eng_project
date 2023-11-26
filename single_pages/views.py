@@ -14,6 +14,6 @@ def about_me(request):
                   )
 
 def smartfarm_landing(request):
-    return render(request, 'single_pages/templates/single_pages/landing.html')
+    return render(request, 'single_pages/landing.html')
 
 
