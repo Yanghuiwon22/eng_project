@@ -4,18 +4,25 @@ from django import forms
 # Create your models here.
 # 게시글 내용
 class BookStore(models.Model):
-    title = models.CharField(max_length=30)
-    content = models.TextField()
-
-    head_image = models.ImageField(upload_to='bookstore/images/%Y/%m/%d/', blank=True)
-    file_upload = models.FileField(upload_to='bookstore/files/%Y/%m/%d/', blank=True)
-
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-
-    # class Meta:
-    #     db_table = 'blog_post'
-
+    책_이름 = models.CharField(max_length=100)
+    지은이 = models.CharField(max_length=100)
+    출판사 = models.CharField(max_length=100)
+    필기흔적_opt = [
+        ('밑줄(연필/샤프)', '밑줄(연필/샤프)'),
+        ('밑줄(볼펜/형광펜)', '밑줄(볼펜/형광펜)'),
+        ('필기(연필/샤프)', '필기(연필/샤프)'),
+        ('필기(볼펜/형광펜)', '필기(볼펜/형광펜)'),
+    ]
+    필기흔적 = models.CharField(max_length=10, choices=필기흔적_opt)
+    보존상태_opt = [
+        ('밑줄(연필/샤프)', '겉표지 깨끗함'),
+        ('밑줄(볼펜/형광펜)', '이름(서명) 기입 없음'),
+        ('필기(연필/샤프)', '페이지 변색 없음'),
+        ('필기(볼펜/형광펜)', '페이지 훼손'),
+    ]
+    보존상태 = models.CharField(max_length=10, choices=보존상태_opt)
+    img_file = models.FileField(upload_to='bookstore/images/%Y/%m/%d', blank=True)
+    희망가격 = models.CharField(max_length=100)
 
     def __str__(self):
         return f'[{self.pk}] {self.title}'
@@ -29,16 +36,27 @@ class BookStore(models.Model):
     def get_file_ext(self):
         return self.get_file_name().split('.')[-1]
 
-class BookForm_Mod(models.Model):
-    # 필드 추가
-    책_이름 = models.CharField(max_length=100)
-    지은이 = models.IntegerField()
-    출판사 = models.CharField(max_length=100)
-    필기흔적_opt = [
-        ('option1', 'Option 1'),
-        ('option2', 'Option 2'),
-        ('option3', 'Option 3'),
-        ('option4', 'Option 4'),
-    ]
-    필기흔적 = models.CharField(max_length=10, choices=필기흔적_opt)
+# class BookForm_Mod(models.Model):
+#     # 필드 추가
+#     책_이름 = models.CharField(max_length=100)
+#     지은이 = models.CharField(max_length=100)
+#     출판사 = models.CharField(max_length=100)
+#     필기흔적_opt = [
+#         ('밑줄(연필/샤프)', '밑줄(연필/샤프)'),
+#         ('밑줄(볼펜/형광펜)', '밑줄(볼펜/형광펜)'),
+#         ('필기(연필/샤프)', '필기(연필/샤프)'),
+#         ('필기(볼펜/형광펜)', '필기(볼펜/형광펜)'),
+#     ]
+#     필기흔적 = models.CharField(max_length=10, choices=필기흔적_opt)
+#     보존상태_opt = [
+#         ('밑줄(연필/샤프)', '겉표지 깨끗함'),
+#         ('밑줄(볼펜/형광펜)', '이름(서명) 기입 없음'),
+#         ('필기(연필/샤프)', '페이지 변색 없음'),
+#         ('필기(볼펜/형광펜)', '페이지 훼손'),
+#     ]
+#     보존상태 = models.CharField(max_length=10, choices=보존상태_opt)
+#     img_file = models.FileField(upload_to='bookstore/images/%Y/%m/%d', blank=True)
+#     희망가격 = models.CharField(max_length=100)
+#
+
 

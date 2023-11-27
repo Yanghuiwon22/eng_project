@@ -19,7 +19,7 @@ def bookform_view(request):
         if form.is_valid():
             # 폼이 유효한 경우, 데이터 처리 로직 작성
             form.save()  # 모델에 저장하거나 추가적인 로직 수행
-            return redirect('bookstore_list.html')  # 성공 페이지로 이동
+            return redirect('bookstore_list')  # 성공 페이지로 이동
     else:
         form = BookForm_Form()
 
