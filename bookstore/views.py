@@ -23,10 +23,14 @@ def bookform_view(request):
     else:
         form = BookForm_Form()
 
-    return render(request, 'bookstore/bookstore_register.html', {'form': form})
+    return render(
+        request,
+        'bookstore/bookstore_register.html',
+        {
+            'form': form,
+        }
+    )
 
 
-def to_book_reg(request):
-    return render(request, 'bookstore/bookstore_detail.html')
 
 

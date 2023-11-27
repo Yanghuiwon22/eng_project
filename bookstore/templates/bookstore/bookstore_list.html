@@ -36,32 +36,23 @@
     <section id="blog" class="blog">
       <div class="container" data-aos="fade-up">
 
+{#          하나의 책 등록#}
         <div class="row gy-4 posts-list">
-
           <div class="col-xl-4 col-md-6">
             <article>
-
-
+                {% for f in form %}
               <div class="post-img">
                 <img src="{% static 'img/logo.png' %}" alt="" class="img-fluid">
               </div>
-
-              <p class="post-category">Politics</p>
-
+              <p class="post-category">{{ f.title }}</p>
               <h2 class="title">
                 <a href="{}">Dolorum optio tempore voluptas dignissimos</a>
               </h2>
 
               <div class="d-flex align-items-center">
-                <img src="{% static 'img/logo.png' %}" alt="" class="img-fluid post-author-img flex-shrink-0">
-                <div class="post-meta">
-                  <p class="post-author-list">Maria Doe</p>
-                  <p class="post-date">
-                    <time datetime="2022-01-01">Jan 1, 2022</time>
-                  </p>
-                </div>
+                <img src="{% static 'img/logo.png' %}" alt="" class="img-fluid post-author-img flex-shrink-0"
               </div>
-
+                {% endfor %}
             </article>
           </div><!-- End post list item -->
 

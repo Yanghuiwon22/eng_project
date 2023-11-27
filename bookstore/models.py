@@ -4,7 +4,7 @@ from django import forms
 # Create your models here.
 # 게시글 내용
 class BookStore(models.Model):
-    책_이름 = models.CharField(max_length=100)
+    title = models.CharField(max_length=100)
     지은이 = models.CharField(max_length=100)
     출판사 = models.CharField(max_length=100)
     필기흔적_opt = [
@@ -24,17 +24,19 @@ class BookStore(models.Model):
     img_file = models.FileField(upload_to='bookstore/images/%Y/%m/%d', blank=True)
     희망가격 = models.CharField(max_length=100)
 
+    created_at = models.DateTimeField(auto_now_add=True)
+
     def __str__(self):
-        return f'[{self.pk}] {self.title}'
+        return f'[{self.출판사}] {self.title}'
 
     def get_absolute_url(self):
         return f'/bookstore/{self.pk}/'
 
     def get_file_name(self):
-        return os.path.basename(self.file_upload.name)
+        return os.path.basename(self.img_file.name)
 
     def get_file_ext(self):
-        return self.get_file_name().split('.')[-1]
+        return self.img_file().split('.')[-1]
 
 # class BookForm_Mod(models.Model):
 #     # 필드 추가
