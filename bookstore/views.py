@@ -13,7 +13,7 @@ class BookStoreDetail(DetailView):
     model = BookStore
 
 # bookregister
-def bookform_view(request):
+def bookform_view(request):     # 폼을 통해 데이터를 입력받고 이를 데이터베이스에 저장
     if request.method == 'POST':
         form = BookForm_Form(request.POST)
         if form.is_valid():
@@ -29,6 +29,15 @@ def bookform_view(request):
         {
             'form': form,
         }
+    )
+
+def booklist_view(request):    #데이터베이스에서 모든 포스트를 가져와서 리스트형식으로 보이게 함.
+    book = BookStore.objects.all().order_by('-pk')
+
+    return render(
+        request,
+        'bookstore/bookstore_list.html',
+        {'posts': book}
     )
 
 
