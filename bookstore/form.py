@@ -1,5 +1,10 @@
 from django import forms
+from .models import BookStore
 
-class UserForm(forms.Form):
-    name = forms.CharField(label='이름', max_length=100)
-    email = forms.EmailField(label='이메일')
+from .models import MyCustomModel
+
+class MyCustomForm(forms.ModelForm):
+    class Meta:
+        model = MyCustomModel
+        fields = ['field1', 'field2']  # 필요한 필드들을 지정
+

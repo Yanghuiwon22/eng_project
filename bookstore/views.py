@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, CreateView
 from .models import BookStore
-from .form import UserForm
+from django.urls import reverse_lazy
+from .form import MyCustomForm
 
 class BookStoreList(ListView):
     model = BookStore
@@ -11,18 +12,21 @@ class BookStoreList(ListView):
 class BookStoreDetail(DetailView):
     model = BookStore
 
-def user_input(request):
+# bookregister
+def my_custom_view(request):
     if request.method == 'POST':
-        form = UserForm(request.POST)
+        form = MyCustomForm(request.POST)
         if form.is_valid():
-            return redirect('success_url_name')
-            # 여기에서 필요한 로직을 수행하거나 데이터베이스에 저장할 수 있습니다.
-            # 예: User.objects.create(name=name, email=email)
-            U
-            return render(request, 'success_template.html', {'name': name, 'email': email})
+            # 폼이 유효한 경우, 데이터 처리 로직 작성
+            form.save()  # 모델에 저장하거나 추가적인 로직 수행
+            return redirect('bookstore_list.html')  # 성공 페이지로 이동
     else:
-        form = UserForm()
-    return render(request, 'bookstore/bookstore_list.html', {'form': form})
+        form = MyCustomForm()
+
+    return render(request, 'bookstore/bookstore_register.html', {'form': form})
+
 
 def to_book_reg(request):
-    return render(request, 'bookstore/.html')
+    return render(request, 'bookstore/bookstore_detail.html')
+
+

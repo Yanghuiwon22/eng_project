@@ -1,5 +1,6 @@
 from django.db import models
 import os
+from django import forms
 # Create your models here.
 # 게시글 내용
 class BookStore(models.Model):
@@ -27,3 +28,9 @@ class BookStore(models.Model):
 
     def get_file_ext(self):
         return self.get_file_name().split('.')[-1]
+
+class MyCustomModel(models.Model):
+    # 필드 추가
+    field1 = models.CharField(max_length=100)
+    field2 = models.IntegerField()
+

@@ -1,4 +1,3 @@
-
 {% extends 'single_pages/layout.html' %}
 {% block content %}
 
@@ -31,7 +30,7 @@
     </div><!-- End Breadcrumbs -->
 
     <!-- ======= Blog Section ======= -->
-    <button type="button" class='btn-get-started register-btn' onclick="window.location.href = {% url 'to_book_reg' %}">책 등록하기</button>
+    <button type="button" class='btn-get-started register-btn' onclick="window.location.href = '{% url 'custom_form' %}'">책 등록하기</button>
 
 
     <section id="blog" class="blog">
