@@ -13,7 +13,7 @@ class BookStoreDetail(DetailView):
     model = BookStore
 
 # bookregister
-def my_custom_view(request):
+def bookform_view(request):
     if request.method == 'POST':
         form = BookForm_Form(request.POST)
         if form.is_valid():
