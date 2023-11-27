@@ -1,10 +1,10 @@
 from django import forms
 from .models import BookStore
 
-from .models import MyCustomModel
+from .models import BookForm_Mod
 
-class MyCustomForm(forms.ModelForm):
+class BookForm_Form(forms.ModelForm):
     class Meta:
-        model = MyCustomModel
-        fields = ['field1', 'field2']  # 필요한 필드들을 지정
+        model = BookForm_Mod
+        fields = ['field1', 'field2', 'bookname']  # 필요한 필드들을 지정
 
