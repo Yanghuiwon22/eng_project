@@ -15,7 +15,7 @@ class BookStoreDetail(DetailView):
 # bookregister
 def bookform_view(request):     # 폼을 통해 데이터를 입력받고 이를 데이터베이스에 저장
     if request.method == 'POST':
-        form = BookForm_Form(request.POST)
+        form = BookForm_Form(request.POST, request.FILES)  # request.FILES로 폼에 입력한 사진을 데이터베이스에 저장할 수 있다.
         if form.is_valid():
             # 폼이 유효한 경우, 데이터 처리 로직 작성
             form.save()  # 모델에 저장하거나 추가적인 로직 수행
@@ -39,7 +39,5 @@ def booklist_view(request):    #데이터베이스에서 모든 포스트를 가
         'bookstore/bookstore_list.html',
         {'posts': book}
     )
-
-
 
 

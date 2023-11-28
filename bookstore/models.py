@@ -1,5 +1,7 @@
 from django.db import models
 import os
+from PIL import Image
+
 from django import forms
 # Create your models here.
 # 게시글 내용
@@ -21,7 +23,7 @@ class BookStore(models.Model):
         ('필기(볼펜/형광펜)', '페이지 훼손'),
     ]
     보존상태 = models.CharField(max_length=10, choices=보존상태_opt)
-    img_file = models.FileField(upload_to='bookstore/images/%Y/%m/%d', blank=True)
+    img_file = models.ImageField(upload_to='bookstore/images/%Y/%m/%d', blank=True)
     희망가격 = models.CharField(max_length=100)
 
     created_at = models.DateTimeField(auto_now_add=True)
