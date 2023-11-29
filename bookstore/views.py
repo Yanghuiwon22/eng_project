@@ -8,9 +8,9 @@ class BookStoreList(ListView):
     model = BookStore
     ordering = '-pk'
 
-
 class BookStoreDetail(DetailView):
     model = BookStore
+    context_object_name = 'book'
 
 # bookregister
 def bookform_view(request):     # 폼을 통해 데이터를 입력받고 이를 데이터베이스에 저장

@@ -1,6 +1,5 @@
 ﻿.idea
 softeng_2023_prj/db.sqlite3
-blog/migrations
 *.sqlite3
 venv
 _media

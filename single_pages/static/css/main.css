@@ -2116,12 +2116,18 @@ section {
 }
 
 .blog .blog-details .title {
-  font-size: 28px;
+  font-size: 40px;
   font-weight: 700;
   padding: 0;
   margin: 20px 0 0 0;
   color: var(--color-default);
 }
+
+.blog .blog_deatils .p {
+  font-size : 30px
+}
+
+
 
 .blog .blog-details .content {
   margin-top: 20px;
