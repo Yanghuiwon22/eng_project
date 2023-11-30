@@ -12,7 +12,7 @@ class BookStore(models.Model):
 
     content = models.TextField()
     img_file = models.ImageField(upload_to='bookstore/images/%Y/%m/%d', blank=True)
-    writer = models.ForeignKey(User, on_delete=models.CASCADE)
+    writer = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
 
     traces_opt = [
         ('밑줄(연필/샤프)', '밑줄(연필/샤프)'),
