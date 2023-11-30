@@ -13,7 +13,6 @@ class Category(models.Model):
     class Meta:
         verbose_name_plural = 'Categories'
 
-
 # 게시글 내용
 class BookStore(models.Model):
     title = models.CharField(max_length=100)
@@ -53,4 +52,6 @@ class BookStore(models.Model):
 
     def get_file_ext(self):
         return self.img_file().split('.')[-1]
+
+
 

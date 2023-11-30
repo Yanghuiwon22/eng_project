@@ -2359,11 +2359,13 @@ section {
 .blog .sidebar .categories ul {
   list-style: none;
   padding: 0;
+
 }
 
 .blog .sidebar .categories ul li+li {
   padding-top: 10px;
 }
+
 
 .blog .sidebar .categories ul a {
   color: var(--color-default);

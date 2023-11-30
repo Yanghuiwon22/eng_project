@@ -42,14 +42,21 @@
       <div class="container" data-aos="fade-up">
 
         <div class="row gy-4 posts-list">
-            {% for category in categories %}
-                <li>
-                    <a href="{{ category.get_absolute_url }}">{{ category }} ({{ category.bookstore_set.count }})</a>
-                </li>
-            {% endfor %}
+            <div class="sidebar">
+                  <div class="sidebar-item categories">
+                    <h3 class="sidebar-title">Categories</h3>
+                    <ul class="mt-3">
+                        {% for category in categories %} <!-- 카테고리 목록으로 보여주는 곳 -->
+                            <li>
+                                <a href="{{ category.get_absolute_url }}">{{ category }} ({{ category.bookstore_set.count }})</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                  </div><!-- End sidebar categories-->
+            </div>
+
 
             {% for item in object_list %}
-
               <div class="col-xl-4 col-md-6">
                 <article>
 {#                  <div class="post-img">#}

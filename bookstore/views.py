@@ -2,8 +2,8 @@ from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView, CreateView
 from .models import BookStore
 from django.urls import reverse_lazy
-from .form import BookForm_Form
 from .models import BookStore, Category
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 class BookStoreList(ListView):
     model = BookStore
@@ -20,6 +20,13 @@ class BookStoreDetail(DetailView):
     model = BookStore
     context_object_name = 'book'
 
+    def get_context_data(self, **kwargs):
+        context = super(BookStoreDetail, self).get_context_data()
+        context['categories'] = Category.objects.all()
+        context['no_category_post_count'] = BookStore.objects.filter(category=None).count()
+
+        return context
+
 # bookregister
 def bookform_view(request):     # 폼을 통해 데이터를 입력받고 이를 데이터베이스에 저장
     if request.method == 'POST':
@@ -33,10 +40,12 @@ def bookform_view(request):     # 폼을 통해 데이터를 입력받고 이를
 
     return render(
         request,
-        'bookstore/bookstore_register.html',
+        'bookstore/templates/bookstore/bookstore_form.html',
         {
             'form': form,
         }
     )
 
-
+class BookForm_Form(CreateView):
+    model = BookStore
+    fields = ['title', 'author', 'publisher', 'category','price', 'img_file', 'content', 'traces', 'status']  # 필요한 필드들을 지정

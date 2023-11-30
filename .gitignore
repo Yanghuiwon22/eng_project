@@ -6,3 +6,4 @@ _media
 migrations
 Impact
 __pycache__
+bookstore/__pycache__
