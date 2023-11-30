@@ -1,12 +1,19 @@
 from django.db import models
 import os
 from multiselectfield import MultiSelectField
+from django.contrib.auth.models import User
 # Create your models here.
 # 게시글 내용
 class BookStore(models.Model):
     title = models.CharField(max_length=100)
     author = models.CharField(max_length=100)
     publisher = models.CharField(max_length=100)
+    price = models.CharField(max_length=100)
+
+    content = models.TextField()
+    img_file = models.ImageField(upload_to='bookstore/images/%Y/%m/%d', blank=True)
+    writer = models.ForeignKey(User, on_delete=models.CASCADE)
+
     traces_opt = [
         ('밑줄(연필/샤프)', '밑줄(연필/샤프)'),
         ('밑줄(볼펜/형광펜)', '밑줄(볼펜/형광펜)'),
@@ -22,13 +29,8 @@ class BookStore(models.Model):
     ]
     status = MultiSelectField(max_length=100, choices=status_opt)
 
-    img_file = models.ImageField(upload_to='bookstore/images/%Y/%m/%d', blank=True)
-    price = models.CharField(max_length=100)
-
-    content = models.TextField()
-
     def __str__(self):
-        return f'[{self.publisher}] {self.title}'
+        return f'[{self.publisher}] {self.title} :: {self.writer}'
 
     def get_absolute_url(self):
         return f'/bookstore/{self.pk}/'
