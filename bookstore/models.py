@@ -3,6 +3,17 @@ import os
 from multiselectfield import MultiSelectField
 from django.contrib.auth.models import User
 # Create your models here.
+class Category(models.Model):
+    name = models.CharField(max_length=50, unique=True)
+    slug = models.SlugField(max_length=50, unique=True, allow_unicode=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name_plural = 'Categories'
+
+
 # 게시글 내용
 class BookStore(models.Model):
     title = models.CharField(max_length=100)
@@ -29,6 +40,8 @@ class BookStore(models.Model):
     ]
     status = MultiSelectField(max_length=100, choices=status_opt)
 
+    category = models.ForeignKey(Category, null=True, on_delete=models.SET_NULL, blank=True)
+
     def __str__(self):
         return f'[{self.publisher}] {self.title} :: {self.writer}'
 
@@ -40,8 +53,4 @@ class BookStore(models.Model):
 
     def get_file_ext(self):
         return self.img_file().split('.')[-1]
-
-    # ISBN을 이용하여 책 정보 가져오기
-
-
 

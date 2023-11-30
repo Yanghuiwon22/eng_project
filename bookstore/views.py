@@ -3,10 +3,18 @@ from django.views.generic import ListView, DetailView, CreateView
 from .models import BookStore
 from django.urls import reverse_lazy
 from .form import BookForm_Form
+from .models import BookStore, Category
 
 class BookStoreList(ListView):
     model = BookStore
     ordering = '-pk'
+
+    def get_context_data(self, **kwargs):
+        context = super(BookStoreList, self).get_context_data()
+        context['categories'] = Category.objects.all()
+        context['no_category_post_count'] = BookStore.objects.filter(category=None).count()
+
+        return context
 
 class BookStoreDetail(DetailView):
     model = BookStore
