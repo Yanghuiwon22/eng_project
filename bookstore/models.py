@@ -10,8 +10,12 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+    def get_absolute_url(self):
+        return f'/bookstore/category/{self.slug}/'
+
     class Meta:
         verbose_name_plural = 'Categories'
+
 
 # 게시글 내용
 class BookStore(models.Model):

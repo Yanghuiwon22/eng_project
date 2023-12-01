@@ -50,8 +50,6 @@ class BookForm_Form(LoginRequiredMixin, CreateView):
     model = BookStore
     fields = ['title', 'author', 'publisher', 'writer', 'category','price_set', 'price', 'img_file', 'content', 'traces', 'status']  # 필요한 필드들을 지정
 
-
-
     def form_vaild(self, form):
         current_user = self.request.user
         if current_user.is_authenticated:
@@ -59,3 +57,18 @@ class BookForm_Form(LoginRequiredMixin, CreateView):
             return super(BookForm_Form, self).form_valid(form)
         else:
             return redirect('/bookstore/')
+
+def category_page(request, slug):
+    category = Category.objects.get(slug=slug)
+    book_list = BookStore.objects.filter(category=category)
+
+    return render(
+        request,
+        'bookstore/bookstore_list.html',
+        {
+            'book_list' : book_list,
+            'categories' : Category.objects.all(),
+            'no_category_post_count':BookStore.objects.filter(category=None).count(),
+            'category':category,
+        }
+    )
