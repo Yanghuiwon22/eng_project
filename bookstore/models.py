@@ -18,6 +18,7 @@ class BookStore(models.Model):
     title = models.CharField(max_length=100)
     author = models.CharField(max_length=100)
     publisher = models.CharField(max_length=100)
+    price_set = models.CharField(max_length=100)
     price = models.CharField(max_length=100)
 
     content = models.TextField()

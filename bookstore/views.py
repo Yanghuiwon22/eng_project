@@ -48,7 +48,9 @@ def bookform_view(request):     # 폼을 통해 데이터를 입력받고 이를
 
 class BookForm_Form(LoginRequiredMixin, CreateView):
     model = BookStore
-    fields = ['title', 'author', 'publisher', 'writer', 'category','price', 'img_file', 'content', 'traces', 'status']  # 필요한 필드들을 지정
+    fields = ['title', 'author', 'publisher', 'writer', 'category','price_set', 'price', 'img_file', 'content', 'traces', 'status']  # 필요한 필드들을 지정
+
+
 
     def form_vaild(self, form):
         current_user = self.request.user

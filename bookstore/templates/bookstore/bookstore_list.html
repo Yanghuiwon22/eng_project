@@ -33,14 +33,12 @@
 
     <section id="blog" class="blog">
 
-        <div class="book_register">
+      <div class="container" data-aos="fade-up">
+          <div class="book-register">
             <button type="button" class='btn-get-started register-btn bi bi-pencil-square' onclick="window.location.href = '{% url 'bookstore_register_form' %}'">
             책 등록하기
             </button>
-        </div>
-
-      <div class="container" data-aos="fade-up">
-
+          </div>
         <div class="row gy-4 posts-list">
             <div class="sidebar">
                   <div class="sidebar-item categories">
@@ -59,18 +57,21 @@
             {% for item in object_list %}
               <div class="col-xl-4 col-md-6">
                 <article>
-{#                  <div class="post-img">#}
-                      <img src="{{ item.img_file.url }}" width="300px" height="300px">
-{#                  </div>#}
+                  <div class="post-img">
+                      <img src="{{ item.img_file.url }}" alt class="img-fluid">
+                  </div>
 
                   <h2 class="title">
-                    <a href="{{ item.get_absolute_url }}">{{ item.title }}</a>
+                      <div><a href="{{ item.get_absolute_url }}">{{ item.title }}</a></div>
                   </h2>
 
-                  <div class="d-flex align-items-center">
-{#                    <img src="{% static 'img/logo.png' %}" alt="" class="img-fluid post-author-img flex-shrink-0">#}
-                      <p>판매자 : {{ item.writer | upper }}</p>
-                      </div>
+                    <div>
+                        <p>{{ item.author }}</p>
+                        <p>{{ item.publisher }}</p>
+                        <span class="price">{{ item.price }}원</span>
+                        <span class="price-set">{{ item.price_set }}원</span>
+                    </div>
+
 
                 </article>
               </div><!-- End post list item -->

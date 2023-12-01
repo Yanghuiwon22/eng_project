@@ -2055,11 +2055,12 @@ section {
 }
 
 .blog .posts-list .post-img {
-  width: 300px;
-  max-height: 240px;
+  max-width: 500px;
+  max-height: 500px;
   margin: -30px -30px 15px -30px;
   overflow: hidden;
 }
+
 
 .blog .posts-list .post-category {
   font-size: 16px;
@@ -2098,6 +2099,26 @@ section {
   font-size: 14px;
   color: #3c3c3c;
   margin-bottom: 0;
+}
+
+.blog .posts-list .price {
+  font-size: 25px;
+  color: #D10000;
+  font-weight: bold;
+  /*text-decoration: line-through;*/
+}
+
+.blog .posts-list .price-set {
+  font-size: 15px;
+  color: gray;
+  text-decoration: line-through;
+}
+
+.blog .book-register {
+  font-size: 20px;
+  padding: 30px;
+  text-align: right;
+
 }
 
 /*--------------------------------------------------------------
