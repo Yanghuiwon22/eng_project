@@ -53,20 +53,13 @@
         <a href="https://sfarm.jbnu.ac.kr/jsf/index.do" class="house"><i class="bi bi-house"></i></a>
 
           {% if user.is_authenticated %}
-            <li class="dropdown"><a href="#"><span>{{ user.username }}</span></a>
-                <div class="dropdown="><a class="dropdown-active" href="/accounts/logout/">Log Out</a></div>
+            <li class="dropdown"><a href="{% url 'my_page' %}"><span>{{ user.username }}</span></a>
+{#                <div class="dropdown="><a class="dropdown-active" href="/accounts/logout/">Log Out</a></div>#}
           </li>
 
           {% else %}
           <a role="button" class="btn btn-block" href="{% provider_login_url 'google' %}"> {# 로그인 버튼 #}
               <i class="fab fa-google"></i>&nbsp&nbsp Login</a>
-{#              <a role="button" class="btn btn-outline-dark btn-block btn-sm" href='/accounts/login/'>#}
-{#              <i class="far fa-envelope">&nbsp&nbsp Log in with Username</i>#}
-{#              </a>#}
-{#              <a role="button" class="btn btn-outline-dark btn-block btn-sm" href='/accounts/signup/'>#}
-{#              <i class="far fa-envelope">&nbsp&nbsp Sign up with E-mail</i>#}
-{#              </a>#}
-              </div>
       </div>
           {% endif %}
 
