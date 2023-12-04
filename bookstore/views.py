@@ -56,7 +56,7 @@ class BookForm_Form(LoginRequiredMixin, CreateView):
             form.instance.writer = current_user
             return super(BookForm_Form, self).form_valid(form)
         else:
-            return redirect('/bookstore/')
+            return redirect('/bookstore/bookstore_list')
 
 def category_page(request, slug):
     category = Category.objects.get(slug=slug)
