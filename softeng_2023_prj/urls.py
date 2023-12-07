@@ -29,6 +29,8 @@ urlpatterns = [
     path('notice/', include("notice.urls")),
     path('bookstore/', include("bookstore.urls")),
     # path('reserve_meal/', include('reserve_meal.urls'))
+    path('messaging/', include("messaging.urls")),
+
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
