@@ -46,17 +46,48 @@ def bookform_view(request):     # 폼을 통해 데이터를 입력받고 이를
         }
     )
 
+# class BookForm_Form(LoginRequiredMixin, CreateView):
+#     model = BookStore
+#     fields = ['title', 'author', 'publisher', 'writer', 'category','price_set', 'price', 'img_file', 'content', 'traces', 'status']  # 필요한 필드들을 지정
+#
+#     def form_vaild(self, form):
+#         current_user = self.request.user
+#         if current_user.is_authenticated:
+#             form.instance.writer = current_user
+#             return super(BookForm_Form, self).form_valid(form)
+#         else:
+#             return redirect('/bookstore/bookstore_list')
+
 class BookForm_Form(LoginRequiredMixin, CreateView):
     model = BookStore
-    fields = ['title', 'author', 'publisher', 'writer', 'category','price_set', 'price', 'img_file', 'content', 'traces', 'status']  # 필요한 필드들을 지정
+    fields = ['title', 'author', 'publisher', 'writer', 'category','price_set', 'price', 'img_file', 'content', 'traces', 'status']
 
-    def form_vaild(self, form):
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class)
+        # 각 필드에 클래스 추가
+        form.fields['title'].widget.attrs['class'] = 'field-input'
+        form.fields['author'].widget.attrs['class'] = 'field-input'
+        form.fields['publisher'].widget.attrs['class'] = 'field-input'
+        form.fields['writer'].widget.attrs['class'] = 'field-input'
+        form.fields['category'].widget.attrs['class'] = 'field-input'
+        form.fields['price_set'].widget.attrs['class'] = 'field-input'
+        form.fields['price'].widget.attrs['class'] = 'field-input'
+        form.fields['img_file'].widget.attrs['class'] = 'field-input'
+        form.fields['content'].widget.attrs['class'] = 'field-input'
+        form.fields['traces'].widget.attrs['class'] = 'field-input'
+        form.fields['status'].widget.attrs['class'] = 'field-input'
+        return form
+
+    def form_valid(self, form):
         current_user = self.request.user
         if current_user.is_authenticated:
             form.instance.writer = current_user
             return super(BookForm_Form, self).form_valid(form)
         else:
             return redirect('/bookstore/bookstore_list')
+
+
+
 
 def category_page(request, slug):
     category = Category.objects.get(slug=slug)

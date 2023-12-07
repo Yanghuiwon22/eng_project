@@ -57,6 +57,3 @@ class BookStore(models.Model):
 
     def get_file_ext(self):
         return self.img_file().split('.')[-1]
-
-
-
