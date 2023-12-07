@@ -16,7 +16,6 @@ class Category(models.Model):
     class Meta:
         verbose_name_plural = 'Categories'
 
-
 # 게시글 내용
 class BookStore(models.Model):
     title = models.CharField(max_length=100)
