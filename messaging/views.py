@@ -1,8 +1,10 @@
 from django.shortcuts import render
 from .forms import MessageForm
+from .models import Message
+from django.contrib.auth.decorators import login_required
 
 
-def new_message(request):
+def new_message(request):              # 새로운 쪽지를 보내는 폼
     if request.method == 'POST':
         form = MessageForm(request.POST)
         if form.is_valid():
@@ -12,4 +14,8 @@ def new_message(request):
     else:
         form = MessageForm()
 
-    return render(request, 'messaging/new_message.html', {'form': form})
+    return render(request, 'messaging/templates/messaging/message_form.html', {'form': form})
+
+def message_list(request):                     # 내가 보낸 쪽지의 리스트를 보여주기 위함.
+    sent_messages = Message.objects.filter(sender=request.user)
+    return render(request, 'messaging/message_list.html', {'sent_messages': sent_messages})

@@ -16,7 +16,7 @@ class BookStoreList(ListView):
 
         return context
 
-class BookStoreDetail(DetailView):ㅋ 
+class BookStoreDetail(DetailView):
     model = BookStore
     context_object_name = 'book'
 
