@@ -3,11 +3,15 @@ from .forms import MessageForm
 from .models import Message
 from django.contrib.auth.decorators import login_required
 
-def message_list(request):                     # 내가 보낸 쪽지의 리스트를 보여주기 위함.
-    sent_messages = Message.objects.filter(sender=request.user)
-    return render(request, 'messaging/message_list.html', {'sent_messages': sent_messages})
 
-def create_message(request):    # 쪽지 폼을 작성하고 제출하면 실행되는 함수이다.
+def message_list(request):  # 내가 보낸 쪽지의 리스트를 보여주기 위함.
+    sent_messages = Message.objects.filter(sender=request.user)
+    received_messages = Message.objects.filter(receiver=request.user)
+    return render(request, 'messaging/message_list.html',
+                  {'sent_messages': sent_messages, 'received_messages': received_messages})
+
+
+def create_message(request):  # 쪽지 폼을 작성하고 제출하면 실행되는 함수이다.
     if request.method == 'POST':
         form = MessageForm(request.POST)
         if form.is_valid():

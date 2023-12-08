@@ -50,6 +50,17 @@
                     {% endfor %}
                 </ul>
 
+                <ul>
+                    {% for message in received_messages %}
+                        <li>
+                            <strong>Sender:</strong> {{ message.sender.username }}<br>
+                            <strong>Subject:</strong> {{ message.subject }}<br>
+                            <strong>Content:</strong> {{ message.content }}<br>
+                            <strong>Sent at:</strong> {{ message.timestamp }}
+                        </li>
+                    {% endfor %}
+                </ul>
+
             </div>
         </section>
 
