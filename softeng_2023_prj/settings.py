@@ -48,7 +48,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
-
+    'crispy_forms',
     'blog',
     'single_pages',
     'todo_app',
@@ -169,3 +169,6 @@ SITE_ID = 1
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 LOGIN_REDIRECT_URL = '/'
+
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

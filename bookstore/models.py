@@ -3,6 +3,13 @@ import os
 from multiselectfield import MultiSelectField
 from django.contrib.auth.models import User
 # Create your models here.
+
+
+class BookImage(models.Model):
+    image = models.ImageField(upload_to='bookstore/images/%Y/%m/%d')
+
+
+
 class Category(models.Model):
     name = models.CharField(max_length=50, unique=True)
     slug = models.SlugField(max_length=50, unique=True, allow_unicode=True)
@@ -26,6 +33,7 @@ class BookStore(models.Model):
 
     content = models.TextField()
     img_file = models.ImageField(upload_to='bookstore/images/%Y/%m/%d', blank=True)
+
     writer = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
 
     traces_opt = [
@@ -45,6 +53,7 @@ class BookStore(models.Model):
 
     category = models.ForeignKey(Category, null=True, on_delete=models.SET_NULL, blank=True)
 
+
     def __str__(self):
         return f'[{self.publisher}] {self.title} :: {self.writer}'
 
@@ -56,3 +65,7 @@ class BookStore(models.Model):
 
     def get_file_ext(self):
         return self.img_file().split('.')[-1]
+
+
+
+
