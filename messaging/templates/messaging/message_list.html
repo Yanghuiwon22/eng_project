@@ -38,31 +38,25 @@
                     </div>
                 </div>
 
-                {#    사용자별 메세지 묶어서 보여주기#}
 
                 <p>로드중입니다...</p>
                 <hr/>
 
+                {#    사용자별 메세지 묶어서 보여주기#}
                 {% for user in users %}
-                    <p>{{ user }}</p>
-{#                    {% for message in received_messages %}#}
-                        {% if received_messages %}
-                            <p>received_messages가 존재합니다</p>
-                        {% else %}
-                            <p>received_messages가 존재하지 않습니다</p>
+                    {% for messages in sent_messages %}
+                        {% if messages.sender == user %}
+                            <strong>{{ user }}</strong>
+                            <li>
+                                <p>내가 보낸 메세지 : {{ messages }}</p>
+                            </li>
                         {% endif %}
-
-                        {#                        {{ message.receiver }}#}
-                        {#                        {% if message.receiver == user %}#}
-                        {#                            <p>메세지는 : {{ message.content }}</p>#}
-                        {#                        {% endif %}#}
-                        {#                    {% empty %}#}
-                        {#                        <p>메세지가 없습니다</p>#}
-{#                    {% endfor %}#}
-                    <hr/>
+                    {% empty %}
+                        <p>메세지를 주고 받은 적이 없습니다.</p>
+                    {% endfor %}
                 {% endfor %}
 
-{#            내가 주고 받은 메세지 리스트#}
+                {#            내가 주고 받은 메세지 리스트#}
                 <ul>
                     {% for message in sent_messages %}
                         <li>
