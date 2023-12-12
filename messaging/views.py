@@ -23,7 +23,7 @@ def create_message(request):  # 쪽지 폼을 작성하고 제출하면 실행�
 def message_list(request):
     users = User.objects.exclude(pk=request.user.pk)
     # users = User.objects.all()
-    received_messages = Message.objects.filter(receiver=request.user).order_by('-received_time')
+    received_messages = Message.objects.filter(receiver=request.user).order_by('-receivde_time')
     sent_messages = Message.objects.filter(sender=request.user).order_by('-sent_time')
 
     if received_messages or sent_messages:
