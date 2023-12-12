@@ -21,9 +21,10 @@ def create_message(request):  # 쪽지 폼을 작성하고 제출하면 실행�
     return render(request, 'messaging/message_form.html', {'form': form})
 
 def message_list(request):
-    users = User.objects.all()
-    received_messages = Message.objects.filter(receiver=request.user)
-    sent_messages = Message.objects.filter(sender=request.user)
+    users = User.objects.exclude(pk=request.user.pk)
+    # users = User.objects.all()
+    received_messages = Message.objects.filter(receiver=request.user).order_by('-received_time')
+    sent_messages = Message.objects.filter(sender=request.user).order_by('-sent_time')
 
     if received_messages or sent_messages:
         has_messages = True
