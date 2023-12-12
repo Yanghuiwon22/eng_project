@@ -7,9 +7,8 @@ class Message(models.Model):
     content = models.TextField()
     timestamp = models.DateTimeField(auto_now_add=True)
 
-    # time = models.DateTimeField(auto_now_add=True)  # 보낸 시간
-    sent_time = models.DateTimeField(auto_now_add=True)
-    receivde_time = models.DateTimeField(auto_now_add=True)
+    # sent_time = models.DateTimeField(auto_now_add=True)
+    # receivde_time = models.DateTimeField(auto_now_add=True)
 
     # 추가 필드: 읽음 여부 등
     # 사용자 = models.ForeignKey(User, related_name='user', on_delete=models.CASCADE)

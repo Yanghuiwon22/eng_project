@@ -41,91 +41,117 @@
 
                 <p>로드중입니다...</p>
                 <hr/>
-                {% regroup received_messages|dictsort:"received_time" by received_time as grouped_received %}
-                {% regroup sent_messages|dictsort:"sent_time" by sent_time as grouped_sent %}
-
-{#                {% for user in users %}#}
-{#                    <strong>{{ user }}</strong>#}
-{#                    {% for group in grouped_received %}#}
-{#                        {% for message in group.list %}#}
-{#                            <p>내용: {{ message.content }}</p>#}
-{#                        {% endfor %}#}
-{#                    {% empty %}#}
-{#                        <p>받은 메시지가 없습니다.</p>#}
-{#                    {% endfor %}#}
-{##}
-{#                    {% for group in grouped_sent %}#}
-{#                        {% for message in group.list %}#}
-{#                            <p>내용: {{ message.content }}</p>#}
-{#                        {% endfor %}#}
-{#                    {% empty %}#}
-{#                        <p>보낸 메시지가 없습니다.</p>#}
-{#                    {% endfor %}#}
-{#                {% endfor %}#}
-
-                {% for user in users %}
-                    <strong>{{ user }}</strong>
-                    {% for group in grouped_received %}
-                        {% for message in group.list %}
-                            <p>내용: {{ message.content }}</p>
-                        {% endfor %}
-                    {% empty %}
-                        <p>받은 메시지가 없습니다.</p>
-                    {% endfor %}
-
-                    {% for group in grouped_sent %}
-                        {% for message in group.list %}
-                            <p>내용: {{ message.content }}</p>
-                        {% endfor %}
-                    {% empty %}
-                        <p>보낸 메시지가 없습니다.</p>
+                {% regroup all_messages|dictsort:'timestamp' by user as all_messages_group %}
+                {% for group in all_messages_group %}
+                    {% for message in group.list %}
+                        <p>{{ message }}</p>
                     {% endfor %}
                 {% endfor %}
 
+                {##}
+                {#                {% regroup all_messages|dictsort:'timestamp' by user as grouped_messages %}#}
+                {##}
+                {#                {% if grouped_messages %}#}
+                {#                    <p>grouped_messages 그룹화되었습니다.</p>#}
+                {#                {% else %}#}
+                {#                    <p>grouped_messages 형성되지 못했습니다.</p>#}
+                {#                {% endif %}#}
+                {##}
+                {#                {{ all_messages.content }}#}
+                {#                {% for group in grouped_messages %}#}
+                {#                    <p>User: {{ group.grouper }}</p>#}
+                {#                    <ul>#}
+                {#                        {% for message in group.list %}#}
+                {#                            <li>{{ message }}</li>#}
+                {#                        {% endfor %}#}
+                {#                    </ul>#}
+                {#                {% endfor %}#}
+
+
+                {#                {% regroup received_messages|dictsort:"received_time" by received_time as grouped_received %}#}
+                {#                {% regroup sent_messages|dictsort:"sent_time" by sent_time as grouped_sent %}#}
+
+                {#                {% for user in users %}#}
+                {#                    <strong>{{ user }}</strong>#}
+                {#                    {% for group in grouped_received %}#}
+                {#                        {% for message in group.list %}#}
+                {#                            <p>내용: {{ message.content }}</p>#}
+                {#                        {% endfor %}#}
+                {#                    {% empty %}#}
+                {#                        <p>받은 메시지가 없습니다.</p>#}
+                {#                    {% endfor %}#}
+                {##}
+                {#                    {% for group in grouped_sent %}#}
+                {#                        {% for message in group.list %}#}
+                {#                            <p>내용: {{ message.content }}</p>#}
+                {#                        {% endfor %}#}
+                {#                    {% empty %}#}
+                {#                        <p>보낸 메시지가 없습니다.</p>#}
+                {#                    {% endfor %}#}
+                {#                {% endfor %}#}
+
+                {#                {% for user in users %}#}
+                {#                    <strong>{{ user }}</strong>#}
+                {#                    {% for group in grouped_received %}#}
+                {#                        {% for message in group.list %}#}
+                {#                            <p>내용: {{ message.content }}</p>#}
+                {#                        {% endfor %}#}
+                {#                    {% empty %}#}
+                {#                        <p>받은 메시지가 없습니다.</p>#}
+                {#                    {% endfor %}#}
+                {##}
+                {#                    {% for group in grouped_sent %}#}
+                {#                        {% for message in group.list %}#}
+                {#                            <p>내용: {{ message.content }}</p>#}
+                {#                        {% endfor %}#}
+                {#                    {% empty %}#}
+                {#                        <p>보낸 메시지가 없습니다.</p>#}
+                {#                    {% endfor %}#}
+                {#                {% endfor %}#}
+
                 {#    사용자별 메세지 묶어서 보여주기#}
                 {#                {% for user in users %}#}
-{#                    <strong>{{ user }}</strong><br>#}
-{#                    {% for messages in sent_messages %}#}
-{#                        {% if messages.sender == user %}#}
-{#                            <li>#}
-{#                                <p>내가 보낸 메세지 : {{ messages.content }}</p>#}
-{#                            </li>#}
-{#                        {% endif %}#}
-{##}
-{#                        {% if messages.receiver == user %}#}
-{#                            <li>#}
-{#                                <p>내가 보낸 메세지 : {{ messages.content }}</p>#}
-{#                            </li>#}
-{#                        {% endif %}#}
-{#                    {% empty %}#}
-{#                        <p>메세지를 주고 받은 적이 없습니다.</p>#}
-{#                    {% endfor %}#}
-{#                {% endfor %}#}
+                {#                    <strong>{{ user }}</strong><br>#}
+                {#                    {% for messages in sent_messages %}#}
+                {#                        {% if messages.sender == user %}#}
+                {#                            <li>#}
+                {#                                <p>내가 보낸 메세지 : {{ messages.content }}</p>#}
+                {#                            </li>#}
+                {#                        {% endif %}#}
+                {##}
+                {#                        {% if messages.receiver == user %}#}
+                {#                            <li>#}
+                {#                                <p>내가 보낸 메세지 : {{ messages.content }}</p>#}
+                {#                            </li>#}
+                {#                        {% endif %}#}
+                {#                    {% empty %}#}
+                {#                        <p>메세지를 주고 받은 적이 없습니다.</p>#}
+                {#                    {% endfor %}#}
+                {#                {% endfor %}#}
 
                 {#            내가 주고 받은 메세지 리스트#}
-            <hr/>
-{#                <ul>#}
-{#                    {% for message in sent_messages %}#}
-{#                        <li>#}
-{#                            <strong>Receiver:</strong> {{ message.receiver.username }}<br>#}
-{#                            <strong>Subject:</strong> {{ message.subject }}<br>#}
-{#                            <strong>Content:</strong> {{ message.content }}<br>#}
-{#                            <strong>Sent at:</strong> {{ message.timestamp }}#}
-{#                        </li>#}
-{#                    {% endfor %}#}
-{#                </ul>#}
-{##}
-{#                <ul>#}
-{#                    {% for message in received_messages %}#}
-{#                        <li>#}
-{#                            <strong>Sender:</strong> {{ message.sender.username }}<br>#}
-{#                            <strong>Subject:</strong> {{ message.subject }}<br>#}
-{#                            <strong>Content:</strong> {{ message.content }}<br>#}
-{#                            <strong>Sent at:</strong> {{ message.timestamp }}#}
-{#                        </li>#}
-{#                    {% endfor %}#}
-{##}
-{#                </ul>#}
+                {#                <ul>#}
+                {#                    {% for message in sent_messages %}#}
+                {#                        <li>#}
+                {#                            <strong>Receiver:</strong> {{ message.receiver.username }}<br>#}
+                {#                            <strong>Subject:</strong> {{ message.subject }}<br>#}
+                {#                            <strong>Content:</strong> {{ message.content }}<br>#}
+                {#                            <strong>Sent at:</strong> {{ message.timestamp }}#}
+                {#                        </li>#}
+                {#                    {% endfor %}#}
+                {#                </ul>#}
+                {##}
+                {#                <ul>#}
+                {#                    {% for message in received_messages %}#}
+                {#                        <li>#}
+                {#                            <strong>Sender:</strong> {{ message.sender.username }}<br>#}
+                {#                            <strong>Subject:</strong> {{ message.subject }}<br>#}
+                {#                            <strong>Content:</strong> {{ message.content }}<br>#}
+                {#                            <strong>Sent at:</strong> {{ message.timestamp }}#}
+                {#                        </li>#}
+                {#                    {% endfor %}#}
+                {##}
+                {#                </ul>#}
 
             </div>
         </section>
