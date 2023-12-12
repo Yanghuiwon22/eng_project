@@ -7,7 +7,10 @@ class Message(models.Model):
     content = models.TextField()
     timestamp = models.DateTimeField(auto_now_add=True)
     # 추가 필드: 읽음 여부 등
+    # 사용자 = models.ForeignKey(User, related_name='user', on_delete=models.CASCADE)
 
     def __str__(self):
         return f"From {self.sender} to {self.receiver}: {self.content}"
+
+
 

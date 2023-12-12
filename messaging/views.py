@@ -2,15 +2,11 @@ from django.shortcuts import render, redirect
 from .forms import MessageForm
 from .models import Message
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
+from django.contrib.auth.models import User
 
 
-def message_list(request):  # 내가 보낸 쪽지의 리스트를 보여주기 위함.
-    sent_messages = Message.objects.filter(sender=request.user)
-    received_messages = Message.objects.filter(receiver=request.user)
-    return render(request, 'messaging/message_list.html',
-                  {'sent_messages': sent_messages, 'received_messages': received_messages})
-
-
+# new_messaing -> 폼에서 작성 후 전송누르면 실행 (DB에 저장)
 def create_message(request):  # 쪽지 폼을 작성하고 제출하면 실행되는 함수이다.
     if request.method == 'POST':
         form = MessageForm(request.POST)
@@ -23,3 +19,41 @@ def create_message(request):  # 쪽지 폼을 작성하고 제출하면 실행�
     else:
         form = MessageForm()
     return render(request, 'messaging/message_form.html', {'form': form})
+
+def message_list(request):
+    users = User.objects.all()
+    received_messages = Message.objects.filter(receiver=request.user)
+    sent_messages = Message.objects.filter(sender=request.user)
+
+    if received_messages or sent_messages:
+        has_messages = True
+    else:
+        has_messages = False
+    return render(request, 'messaging/message_list.html',
+                  {'users':users, 'has_messages':has_messages,
+                   'sent_messages': sent_messages, 'received_messages':received_messages})
+
+@login_required
+def inbox(request):
+    received_messages = get_user_messages(request.user)
+    if received_messages.exists():
+        has_messages = True
+    else:
+        has_messages = False
+    return render(request, 'inbox.html', {'received_messages': received_messages, 'has_messages': has_messages})
+
+def get_users_with_messages():
+    users_with_messages = {}
+    users = User.objects.all()
+
+    for user in users:
+        received_messages = Message.objects.filter(receiver=user)
+        users_with_messages[user] = received_messages
+
+    return users_with_messages
+
+
+def get_user_messages(user):
+    user_messages = Message.objects.filter(Q(sender=user) | Q(receiver=user))
+    return user_messages
+
