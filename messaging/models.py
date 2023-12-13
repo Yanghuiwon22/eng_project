@@ -1,17 +1,13 @@
 from django.db import models
 from django.contrib.auth.models import User
+from itertools import chain
 
 class Message(models.Model):
     sender = models.ForeignKey(User, related_name='sent_messages', on_delete=models.CASCADE)
     receiver = models.ForeignKey(User, related_name='received_messages', on_delete=models.CASCADE)
     content = models.TextField()
     timestamp = models.DateTimeField(auto_now_add=True)
-
-    # sent_time = models.DateTimeField(auto_now_add=True)
-    # receivde_time = models.DateTimeField(auto_now_add=True)
-
-    # 추가 필드: 읽음 여부 등
-    # 사용자 = models.ForeignKey(User, related_name='user', on_delete=models.CASCADE)
+    room = f'{sender}_{receiver}'
 
     def __str__(self):
         return f"From {self.sender} to {self.receiver}: {self.content}"
@@ -21,8 +17,12 @@ class Message(models.Model):
         return last_message
 
     def get_absolute_url(self):
-        return f'/bookstore/{self.user_id}/'
+        return f'/messaging/{self.user.id}/'
 
+    def get_room(self):
+        return
 
-
-
+# class MessageRoom(models.Model):
+#     room_user =
+#     def __str__(self):
+#         return

@@ -26,27 +26,6 @@ class BookStoreDetail(DetailView):
         context['no_category_post_count'] = BookStore.objects.filter(category=None).count()
         return context
 
-
-
-def bookform_view(request):
-    if request.method == 'POST':
-        form = BookForm_Form(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            return redirect('message_list')
-    else:
-        form = BookForm_Form()
-
-    return render(
-        request,
-        'bookstore/bookstore_form.html',
-        {
-            'form': form,
-        }
-    )
-
-
-
 class BookForm_Form(LoginRequiredMixin, CreateView):
     model = BookStore
     fields = ['title', 'author', 'publisher', 'writer', 'category', 'price_set', 'price', 'img_file', 'content', 'traces', 'status']

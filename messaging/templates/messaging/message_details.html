@@ -30,20 +30,31 @@
         </div><!-- End Breadcrumbs -->
 
 {#    사용자별 메세지 묶어서 보여주기#}
-                {% regroup all_messages|dictsort:'timestamp' by user as all_messages_group %}
+                <article class="blog-details">
+                        <h1 class="title">{{ book.title }}</h1>
 
-                {% for user in users %}
-                    <p><strong>{{ user }}</strong></p>
+                        <!-- Book Info Container -->
+                        <div class="book-info-container">
+                            <div class="book-info">
+                                <p><strong>저자:</strong> {{ book.author }}</p>
+                                <p><strong>출판사:</strong> {{ book.publisher }}</p>
+                                <p><strong>정가:</strong> {{ book.price_set }}원</p>
+                                <p><strong>판매가:</strong> {{ book.price }}원</p>
+                            </div>
+                        </div>
+                        <hr>
 
-                    {% for group in all_messages_group %}
-                        {% for message in group.list %}
-                            {% if not user == message.receiver and not user == message.sender %}
-                            {% else %}
-                                <p>{{ message.content }}</p>
-                                <p>{{ message.timestamp }}</p>
-                            {% endif %}
-                        {% endfor %}
-                    {% endfor %}
-                {% endfor %}
+                        <!-- Trace and Status -->
+                        <div class="trace-status-container">
+                            <p><strong>필기한 흔적 :</strong> {{ book.traces }}</p>
+                            <p><strong>보존 상태:</strong> {{ book.status }}</p>
+                        </div>
+                        <hr>
+
+                        <!-- Book Image -->
+                        <div class="book-image-container">
+                            <img src="{{ book.img_file.url }}" alt="{{ book.title }}" class="book-image">
+                        </div>
+                    </article>
 
 {% endblock %}

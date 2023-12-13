@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.contrib.auth.models import User
 from itertools import chain
+from django.views.generic import ListView, DetailView, CreateView
 
 
 # new_messaing -> 폼에서 작성 후 전송누르면 실행 (DB에 저장)
@@ -22,21 +23,19 @@ def create_message(request):  # 쪽지 폼을 작성하고 제출하면 실행�
     return render(request, 'messaging/message_form.html', {'form': form})
 
 def message_list(request):
-    users = User.objects.exclude(pk=request.user.pk)
+    all_users = User.objects.exclude(pk=request.user.pk)
     # users = User.objects.all()
     received_messages = Message.objects.filter(receiver=request.user).order_by('-timestamp')
     sent_messages = Message.objects.filter(sender=request.user).order_by('-timestamp')
     all_messages = list(chain(received_messages, sent_messages))
 
+    current_user = request.user.id
+
     # sender = User.objects.get(pk=sender_id)
     # receiver = User.objects.get(pk=receiver_id)
     # last_message = Message.get_last_message(sender, receiver)
 
-    if received_messages or sent_messages:
-        has_messages = True
-    else:
-        has_messages = False
     return render(request, 'messaging/message_list.html',
-                  {'users':users, 'has_messages':has_messages,
-                   'sent_messages': sent_messages, 'received_messages':received_messages,
-                   'all_messages':all_messages,})
+                  {'all_users': all_users,
+                   'sent_messages': sent_messages, 'received_messages': received_messages,
+                   'all_messages': all_messages, })
