@@ -2046,13 +2046,13 @@ section {
 /*--------------------------------------------------------------
 # Blog Posts List
 --------------------------------------------------------------*/
-.blog .posts-list article {
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-  padding: 30px;
-  height: 100%;
-  border-radius: 10px;
-  overflow: hidden;
-}
+/*.blog .posts-list article {*/
+/*  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);*/
+/*  padding: 30px;*/
+/*  height: 100%;*/
+/*  border-radius: 10px;*/
+/*  overflow: hidden;*/
+/*}*/
 
 .blog .posts-list .post-img {
   /*max-width: 500px;*/
@@ -2073,6 +2073,11 @@ section {
   font-weight: 700;
   padding: 0;
   margin: 0 0 20px 0;
+}
+
+.blog .posts-list .first-line {
+  display: flex;
+  justify-content: space-between;
 }
 
 .blog .posts-list .title a {

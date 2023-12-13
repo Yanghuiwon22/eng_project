@@ -51,10 +51,10 @@
                                 {% else %}
                                     <div class="posts-list">
                                         <article>
-                                            <div class="title">
-                                                <p>{{ user }}</p>
+                                            <div class="first-line">
+                                                <p class="title">{{ user }}</p>
+                                                <p>{{ message.timestamp }}</p>
                                             </div>
-                                            <p>{{ message.timestamp }}</p>
                                             <p>{{ message.content }}</p>
                                         </article>
                                     </div>
