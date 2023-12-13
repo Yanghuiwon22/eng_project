@@ -28,7 +28,7 @@ class ArchiveDetail(DetailView):
 class ArchiveForm(forms.ModelForm):
     class Meta:
         model = Archive
-        fields = ['title', 'professor', 'subject', 'student', 'content', 'head_image', 'file_upload', 'category']
+        fields = ['title', 'professor', 'subject', 'student', 'content', 'file_upload', 'category']
 
 class ArchiveForm_Form(LoginRequiredMixin, CreateView):
     model = Archive
