@@ -16,5 +16,13 @@ class Message(models.Model):
     def __str__(self):
         return f"From {self.sender} to {self.receiver}: {self.content}"
 
+    def get_last_message(sender, receiver):
+        last_message = Message.objects.filter(sender=sender, receiver=receiver).first()
+        return last_message
+
+    def get_absolute_url(self):
+        return f'/bookstore/{self.user_id}/'
+
+
 
 

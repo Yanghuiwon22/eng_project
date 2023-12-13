@@ -39,19 +39,46 @@
                 </div>
 
 
+            <div class="row gy-4 posts-list">
+                <div class="sidebar">
+                    <div class="sidebar-item categories">
+                    <h3 class="sidebar-title">Categories</h3>
+                    <ul class="mt-3">
+                        {% for category in categories %} <!-- 카테고리 목록으로 보여주는 곳 -->
+                            <li>
+                                <a href="{{ category.get_absolute_url }}">{{ category }} ({{ category.bookstore_set.count }})</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                  </div><!-- End sidebar categories-->
+            </div>
+
                 <p>로드중입니다...</p>
                 <hr/>
                 {% regroup all_messages|dictsort:'timestamp' by user as all_messages_group %}
 
                 {% for user in users %}
-                    <p><strong>{{ user }}</strong></p>
-                    {% for group in all_messages_group %}
-                        {% for message in group.list %}
-                            <p>{{ message.content }}</p>
-                            <p>{{ message.timestamp }}</p>
-                        {% endfor %}
-                    {% endfor %}
-
+                    <div class="row gy-4 posts-list">
+                        <div class="sidebar">
+                            <div class="sidebar-item categories">
+                                <h3 class="sidebar-title">{{ user }}</h3>
+                                <li>
+                                    <a href="{{ user.get_absolute_url }}">{{ category }}
+                                        ({{ category.bookstore_set.count }})</a>
+                                </li>
+{#                                <p><strong>{{ user }}</strong></p>#}
+                                {% for group in all_messages_group %}
+                                    {% for message in group.list %}
+                                        {% if not user == message.receiver and not user == message.sender %}
+                                        {% else %}
+                                            <p>{{ message.content }}</p>
+                                            <p>{{ message.timestamp }}</p>
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
                 {% endfor %}
 
                 {#                {% regroup all_messages|dictsort:'timestamp' by user as all_messages_group %}#}

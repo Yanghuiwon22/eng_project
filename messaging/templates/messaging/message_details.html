@@ -22,19 +22,28 @@
             <nav>
                 <div class="container">
                     <ol>
-                        <li><a href="{% url 'my_page' %}">my_page</a></li>
-                        <li>message</li>
+                        <li><a href="{% url 'message' %}">message</a></li>
+                        <li>messsage_detail</li>
                     </ol>
                 </div>
             </nav>
         </div><!-- End Breadcrumbs -->
 
 {#    사용자별 메세지 묶어서 보여주기#}
-    {% for user in user_message %}
-        <div class="col-xl-4 col-md-6">
-        </div>
+                {% regroup all_messages|dictsort:'timestamp' by user as all_messages_group %}
 
-    {% endfor %}
-    </main>
+                {% for user in users %}
+                    <p><strong>{{ user }}</strong></p>
+
+                    {% for group in all_messages_group %}
+                        {% for message in group.list %}
+                            {% if not user == message.receiver and not user == message.sender %}
+                            {% else %}
+                                <p>{{ message.content }}</p>
+                                <p>{{ message.timestamp }}</p>
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+                {% endfor %}
 
 {% endblock %}

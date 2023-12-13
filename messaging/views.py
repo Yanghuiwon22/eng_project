@@ -28,6 +28,10 @@ def message_list(request):
     sent_messages = Message.objects.filter(sender=request.user).order_by('-timestamp')
     all_messages = list(chain(received_messages, sent_messages))
 
+    # sender = User.objects.get(pk=sender_id)
+    # receiver = User.objects.get(pk=receiver_id)
+    # last_message = Message.get_last_message(sender, receiver)
+
     if received_messages or sent_messages:
         has_messages = True
     else:
@@ -35,29 +39,4 @@ def message_list(request):
     return render(request, 'messaging/message_list.html',
                   {'users':users, 'has_messages':has_messages,
                    'sent_messages': sent_messages, 'received_messages':received_messages,
-                   'all_messages':all_messages})
-
-@login_required
-def inbox(request):
-    received_messages = get_user_messages(request.user)
-    if received_messages.exists():
-        has_messages = True
-    else:
-        has_messages = False
-    return render(request, 'inbox.html', {'received_messages': received_messages, 'has_messages': has_messages})
-
-def get_users_with_messages():
-    users_with_messages = {}
-    users = User.objects.all()
-
-    for user in users:
-        received_messages = Message.objects.filter(receiver=user)
-        users_with_messages[user] = received_messages
-
-    return users_with_messages
-
-
-def get_user_messages(user):
-    user_messages = Message.objects.filter(Q(sender=user) | Q(receiver=user))
-    return user_messages
-
+                   'all_messages':all_messages,})
