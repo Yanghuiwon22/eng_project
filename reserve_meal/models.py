@@ -14,9 +14,10 @@ def reserve_upload_to(instance,filename):
 # Create your models here.
 class ReserveMeal(models.Model):
     sender = models.ForeignKey(User, related_name='sent_reserve', on_delete=models.CASCADE)
-    receiver = models.ForeignKey(User, related_name='received_reserve', on_delete=models.CASCADE)
 
+    receiver = models.ForeignKey(User, related_name='received_reserve', on_delete=models.CASCADE)
     timetable = models.ImageField(upload_to=reserve_upload_to)
+    content = models.TextField()
     def get_absolute_url(self):        # 폼을 성공적으로 처리 시 이동할 페이지 주소
         return f'/reserve_meal/'
 

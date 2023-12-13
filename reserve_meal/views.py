@@ -13,7 +13,7 @@ def reserve_main(request):
 
 class ReserveMeal_Form(CreateView):
     model = ReserveMeal
-    fields = ['receiver','timetable']
+    fields = ['receiver','timetable','content']
 
     def form_valid(self, form):
         current_user = self.request.user

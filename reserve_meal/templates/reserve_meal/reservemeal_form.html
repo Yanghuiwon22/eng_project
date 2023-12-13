@@ -10,7 +10,12 @@
             보낼사람을 선택해주세요<br>
         </label> {{ form.receiver }}
 
-        <button type="submit">제출</button>
+        <hr/>
+        <label for="{{ form.content.id_for_label }}">
+            하고 싶은 말을 입력해주세요<br>
+        </label> {{ form.content }}
+
+        <hr/><button type="submit">제출</button>
 
     </div>
 </form>
