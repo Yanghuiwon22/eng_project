@@ -9,8 +9,10 @@ class Message(models.Model):
     timestamp = models.DateTimeField(auto_now_add=True)
     room = f'{sender}_{receiver}'
 
+
+
     def __str__(self):
-        return f"From {self.sender} to {self.receiver}: {self.content}"
+        return f"From {self.sender} to {self.receiver} : {self.content}"
 
     def get_last_message(sender, receiver):
         last_message = Message.objects.filter(sender=sender, receiver=receiver).first()

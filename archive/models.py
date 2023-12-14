@@ -35,7 +35,7 @@ class Archive(models.Model):
         return f'[{self.pk}] {self.title} :: {self.student}'
 
     def get_absolute_url(self):
-        return f'/archive/{self.pk}/'
+        return f'/archive/'
 
     def get_file_name(self):
         return os.path.basename(self.file_upload.name)

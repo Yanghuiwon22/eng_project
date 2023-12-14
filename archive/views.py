@@ -28,7 +28,7 @@ class ArchiveDetail(DetailView):
 class ArchiveForm(forms.ModelForm):
     class Meta:
         model = Archive
-        fields = ['title', 'professor', 'subject', 'student', 'content', 'file_upload', 'category']
+        fields = ['title', 'professor', 'subject', 'student', 'content', 'file_upload', 'category', 'head_image']
 
 class ArchiveForm_Form(LoginRequiredMixin, CreateView):
     model = Archive
@@ -42,26 +42,20 @@ class ArchiveForm_Form(LoginRequiredMixin, CreateView):
             return super(ArchiveForm_Form, self).form_valid(form)
         else:
             return redirect('/archive/archive_list')
-
-    def get_success_url(self):
-        return reverse('archive:archive_list')
+    # def get_success_url(self):
+    #     return reverse('archive:archive_list')
 
 def archiveform_view(request):
     if request.method == 'POST':
-        form = ArchiveForm_Form(request.POST, request.FILES)
+        form = ArchiveForm_Form(request.POST)
         if form.is_valid():
-            form.save()
+            new_message = form.save(commit=False)
+            new_message.save()
             return redirect('archive:message_list')  # 'message_list'를 사용하려면 해당 URL을 정의해야 합니다.
     else:
         form = ArchiveForm()
+    return render(request,'archive/archive_form.html', {'form': form})
 
-    return render(
-        request,
-        'archive/archive_form.html',
-        {
-            'form': form,
-        }
-    )
 
 def category_page(request, slug):
     try:

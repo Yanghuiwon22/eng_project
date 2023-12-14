@@ -15,8 +15,19 @@ def reserve_main(request):
 
 
 
-    return render(request, 'messaging/reserve_list.html',
+    return render(request, 'reserve_meal/reserve_main.html',
                   {'all_users': all_users, 'all_meals':all_meals})
+
+def reserve_list(request):
+    sent_meals = ReserveMeal.objects.filter(sender=request.user).order_by('-timestamp')
+    received_meals = ReserveMeal.objects.filter(receiver=request.user).order_by('-timestamp')
+
+    all_meals = list(chain(sent_meals, received_meals))
+
+
+
+    return render(request, 'messaging/reserve_list.html',
+                  { 'all_meals':all_meals})
 
 class ReserveMeal_Form(CreateView):
     model = ReserveMeal

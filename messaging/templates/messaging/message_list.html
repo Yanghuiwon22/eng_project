@@ -66,7 +66,6 @@
                     {% for group in all_messages_group %}
                         {% for message in group.list %}
                             {% for user in all_users %}
-
                                 {% if not user == message.receiver and not user == message.sender %}
                                 {% else %}
                                     <div class="posts-list">
@@ -87,7 +86,15 @@
                                                 <p>{{ message.timestamp }}</p>
 
                                             </div>
-                                            <p style="padding: 10px">{{ message.content }}</p>
+
+                                            {% if request.user in  message.sender or message.receiver %}
+                                                <p>{{ message }}</p>
+                                            {% endif %}
+{#                                            {% if message.sender in  request.user %}#}
+{#                                                <p>{{ message }}</p>#}
+{#                                            {% endif %}#}
+
+{#                                            <p style="padding: 10px">{{ message.content }}</p>#}
                                         </article>
                                     </div>
                                 {% endif %}
