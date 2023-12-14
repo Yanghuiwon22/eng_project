@@ -43,8 +43,29 @@
                     <p>로드중입니다...</p>
                     <hr/>
                     {% regroup all_messages|dictsortreversed:'timestamp' by user as all_messages_group %}
+                    {% regroup all_meals|dictsortreversed:'timestamp' by user as all_meals_group %}
 
                     {% for user in all_users %}
+                        {% for group in all_meals_group %}
+                            {% for meals in group.list %}
+                                {% for meal in meals %}
+                                    {% if not user == meal.sender and not user == meal.receiver %}
+                                    {% else %}
+                                        {{ meal.sender }}
+                                    {% endif %}
+                                {% endfor %}
+                            {% endfor %}
+                        {% endfor %}
+
+                        <hr/>
+
+
+
+
+
+
+
+
                         {% for group in all_messages_group %}
                             {% for message in group.list %}
                                 {% if not user == message.receiver and not user == message.sender %}

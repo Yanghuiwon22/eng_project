@@ -8,6 +8,13 @@ from django.views.generic import CreateView
 def reserve_main(request):
     all_users = User.objects.exclude(pk=request.user.pk)
 
+    sent_meals = ReserveMeal.objects.filter(sender=request.user)
+    received_meals = ReserveMeal.objects.filter(receiver=request.user)
+
+    all_meals = list(chain(sent_meals, received_meals))
+
+
+
     return render(request, 'reserve_meal/reserve_main.html',
                   {'all_users': all_users})
 
