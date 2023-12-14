@@ -61,36 +61,32 @@
                     <p>로드중입니다...</p>
                     <hr/>
                     {% regroup all_messages|dictsortreversed:'timestamp' by user as all_messages_group %}
-                    {% regroup all_meals|dictsortreversed:'timestamp' by user as all_meals_group %}
 
-                    {% for user in all_users %}
-                        {# 밥약 기능 #}
-                        {% for group in all_meals_group %}
-                            {% for meals in group.list %}
-                                {% for meal in meals %}
-                                    {% if not user == meal.sender and not user == meal.receiver %}
-                                    {% else %}
-                                        <hr/>
-                                        <p>밥약</p>
-                                        {{ meal.sender }}
-                                    {% endif %}
-                                {% endfor %}
-                            {% endfor %}
-                        {% endfor %}
 
-                        {# 쪽지 기능 #}
-                        {% for group in all_messages_group %}
-                            {% for message in group.list %}
+                    {# 쪽지 기능 #}
+                    {% for group in all_messages_group %}
+                        {% for message in group.list %}
+                            {% for user in all_users %}
+
                                 {% if not user == message.receiver and not user == message.sender %}
                                 {% else %}
                                     <div class="posts-list">
                                         <article>
                                             <div class="fist-list"
                                                  style="display: flex; justify-content: space-between;">
-                                                <p class="title"><a
-                                                        href="/messaging/{{ user.id }}/">{{ user }}</a>
-                                                </p>
+                                                <div style="display: flex">
+                                                    <p class="title"><a
+                                                            href="/messaging/{{ user.id }}/">{{ user }}</a>
+                                                    </p>
+                                                    {% if message.sender == request.user %}
+                                                        <p>sent</p>
+                                                    {% endif %}
+                                                    {% if message.receiver == request.user %}
+                                                        <p>received</p>
+                                                    {% endif %}
+                                                </div>
                                                 <p>{{ message.timestamp }}</p>
+
                                             </div>
                                             <p style="padding: 10px">{{ message.content }}</p>
                                         </article>
