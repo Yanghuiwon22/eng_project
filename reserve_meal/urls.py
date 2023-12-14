@@ -1,9 +1,12 @@
+from django.contrib import admin
 from django.urls import path, include
-from . import  views
+from .views import reserve_main, ReserveMeal_Form
+
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
-
-    path('<int:pk>/', views.BookStoreDetail.as_view()),
-    path('', views.BookStoreList.as_view())
+    path('', reserve_main, name='reserve_main'),
+    path('regi/', ReserveMeal_Form.as_view(), name='reserve_regi')
 
 ]

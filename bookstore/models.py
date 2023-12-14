@@ -8,8 +8,6 @@ from django.contrib.auth.models import User
 class BookImage(models.Model):
     image = models.ImageField(upload_to='bookstore/images/%Y/%m/%d')
 
-
-
 class Category(models.Model):
     name = models.CharField(max_length=50, unique=True)
     slug = models.SlugField(max_length=50, unique=True, allow_unicode=True)

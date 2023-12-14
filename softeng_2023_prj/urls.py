@@ -21,15 +21,15 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('blog/', include('blog.urls')),
-    path('admin/', admin.site.urls),
     path('', include('single_pages.urls')),
+    path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
     path('archive/', include("archive.urls")),
     path('notice/', include("notice.urls")),
     path('bookstore/', include("bookstore.urls")),
-    # path('reserve_meal/', include('reserve_meal.urls'))
+    path('reserve_meal/', include('reserve_meal.urls')),
     path('messaging/', include("messaging.urls")),
+    # path('allbum/', include("allbum.urls")),
 
 ]
 

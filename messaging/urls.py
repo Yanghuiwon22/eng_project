@@ -5,7 +5,6 @@ urlpatterns = [
     # 기존 URL 패턴들...
     path('new_messaing/', views.create_message, name='new_message'),
     path('message_list/', views.message_list, name='message_list'),
-    path('message_details/', views.message_list, name='message_details'),
+    # path('<int:user.id>/', views.message_list, name='message_details'),
 
-    # 기타 패턴들...
 ]

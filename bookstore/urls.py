@@ -7,3 +7,4 @@ urlpatterns = [
     path('register/', views.BookForm_Form.as_view(), name='bookstore_register_form'),
     path('bookstore/category/<str:slug>', views.category_page)
 ]
+
