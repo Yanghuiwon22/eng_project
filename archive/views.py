@@ -2,33 +2,33 @@ from django import forms
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views.generic import ListView, DetailView, CreateView
-from .models import Archive, Category
+from .models import Archive
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 class ArchiveList(ListView):
     model = Archive
     ordering = '-pk'
 
-    def get_context_data(self, **kwargs):
-        context = super(ArchiveList, self).get_context_data(**kwargs)
-        context['categories'] = Category.objects.all()
-        context['no_category_post_count'] = Archive.objects.filter(category=None).count()
-        return context
+    # def get_context_data(self, **kwargs):
+    #     context = super(ArchiveList, self).get_context_data(**kwargs)
+    #     context['categories'] = Category.objects.all()
+    #     context['no_category_post_count'] = Archive.objects.filter(category=None).count()
+    #     return context
 
 class ArchiveDetail(DetailView):
     model = Archive
     context_object_name = 'archive'
 
-    def get_context_data(self, **kwargs):
-        context = super(ArchiveDetail, self).get_context_data(**kwargs)
-        context['categories'] = Category.objects.all()
-        context['no_category_post_count'] = Archive.objects.filter(category=None).count()
-        return context
+    # def get_context_data(self, **kwargs):
+    #     context = super(ArchiveDetail, self).get_context_data(**kwargs)
+    #     context['categories'] = Category.objects.all()
+    #     context['no_category_post_count'] = Archive.objects.filter(category=None).count()
+    #     return context
 
 class ArchiveForm(forms.ModelForm):
     class Meta:
         model = Archive
-        fields = ['title', 'professor', 'subject', 'student', 'content', 'file_upload', 'category', 'head_image']
+        fields = ['title', 'professor', 'subject', 'student', 'content', 'file_upload', 'head_image']
 
 class ArchiveForm_Form(LoginRequiredMixin, CreateView):
     model = Archive

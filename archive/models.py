@@ -5,18 +5,18 @@ from django.db import models
 import os
 from django.urls import reverse
 
-class Category(models.Model):
-    name = models.CharField(max_length=50, unique=True)
-    slug = models.SlugField(max_length=50, unique=True, allow_unicode=True)
-
-    def __str__(self):
-        return self.name
-
-    def get_absolute_url(self):
-        return reverse('archive:category_page', args=[self.slug])
-
-    class Meta:
-        verbose_name_plural = 'Categories'
+# class Category(models.Model):
+#     name = models.CharField(max_length=50, unique=True)
+#     slug = models.SlugField(max_length=50, unique=True, allow_unicode=True)
+#
+#     def __str__(self):
+#         return self.name
+#
+#     def get_absolute_url(self):
+#         return reverse('archive:category_page', args=[self.slug])
+#
+#     class Meta:
+#         verbose_name_plural = 'Categories'
 
 class Archive(models.Model):
     title = models.CharField(max_length=100)
@@ -28,7 +28,7 @@ class Archive(models.Model):
     file_upload = models.FileField(upload_to='archive/files/%Y/%m/%d/', blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    category = models.ForeignKey(Category, null=True, on_delete=models.SET_NULL, blank=True)
+    # category = models.ForeignKey(Category, null=True, on_delete=models.SET_NULL, blank=True)
     writer = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
 
     def __str__(self):

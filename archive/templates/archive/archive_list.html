@@ -44,42 +44,45 @@
 
 
                 <div class="row gy-4 posts-list">
-                    <div class="sidebar">
-                        <div class="sidebar-item categories">
-                            <h3 class="sidebar-title">Categories</h3>
-                            <ul class="mt-3">
-                                {% for category in categories %} <!-- 카테고리 목록으로 보여주는 곳 -->
-                                    <li>
-                                        <a href="{{ category.get_absolute_url }}">{{ category }}
-                                            ({{ category.archive_set.count }})</a>
-                                    </li>
-                                {% endfor %}
-                            </ul>
-                        </div><!-- End sidebar categories-->
-                    </div>
+{#                    <div class="sidebar">#}
+{#                        <div class="sidebar-item categories">#}
+{#                            <h3 class="sidebar-title">Categories</h3>#}
+{#                            <ul class="mt-3">#}
+{#                                {% for category in categories %} <!-- 카테고리 목록으로 보여주는 곳 -->#}
+{#                                    <li>#}
+{#                                        <a href="{{ category.get_absolute_url }}">{{ category }}#}
+{#                                            ({{ category.archive_set.count }})</a>#}
+{#                                    </li>#}
+{#                                {% endfor %}#}
+{#                            </ul>#}
+{#                        </div><!-- End sidebar categories-->#}
+{#                    </div>#}
 
 
-                    {% for item in object_list %}
-                        <div class="col-xl-4 col-md-6">
-                            <article>
-                                <div class="post-img">
-                                    <img src="{{ item.img_file.url }}" alt class="img-fluid">
-                                </div>
+                   {% for item in object_list %}
+    <div class="col-xl-4 col-md-6">
+        <article>
+            <div class="post-img">
+                {% if item.head_image %}
+                    <img src="{{ item.head_image.url }}" alt class="img-fluid">
+                {% else %}
+                    <p>No image available</p>
+                {% endif %}
+            </div>
 
-                                <h2 class="title">
-                                    <div><a href="{{ item.get_absolute_url }}">{{ item.title }}</a></div>
-                                </h2>
+            <h2 class="title">
+                <div><a href="{{ item.get_absolute_url }}">{{ item.title }}</a></div>
+            </h2>
 
-                                <div>
-                                    <p>{{ item.author }}</p>
-                                    <p>{{ item.publisher }}</p>
-                                    <span class="price">{{ item.price }}원</span>
-                                    <span class="price-set">{{ item.price_set }}원</span>
-                                </div>
+            <div>
+                <p>{{ item.category }}</p>
+                <p>{{ item.professor }}</p>
+                <p>{{ item.student }}</p>
+            </div>
+        </article>
+    </div>
+{% endfor %}
 
-                            </article>
-                        </div><!-- End post list item -->
-                    {% endfor %}
                 </div><!-- End blog posts list -->
             </div>
         </section><!-- End Blog Section -->
