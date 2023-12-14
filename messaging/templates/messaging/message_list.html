@@ -62,7 +62,6 @@
                     <hr/>
                     {% regroup all_messages|dictsortreversed:'timestamp' by user as all_messages_group %}
 
-
                     {# 쪽지 기능 #}
                     {% for group in all_messages_group %}
                         {% for message in group.list %}
