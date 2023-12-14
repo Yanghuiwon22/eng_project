@@ -17,6 +17,7 @@ def reserve_upload_to(instance, filename):
 # Create your models here.
 class ReserveMeal(models.Model):
     sender = models.ForeignKey(User, related_name='sent_reserve', on_delete=models.CASCADE)
+    timestamp = models.DateTimeField(auto_now_add=True)
 
     receiver = models.ForeignKey(User, related_name='received_reserve', on_delete=models.CASCADE)
     timetable = models.ImageField(upload_to=reserve_upload_to)
