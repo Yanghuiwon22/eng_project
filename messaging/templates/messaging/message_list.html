@@ -57,8 +57,6 @@
                         </div>
                     </div>
 
-
-
                     <p>로드중입니다...</p>
                     <hr/>
                     {% regroup all_messages|dictsortreversed:'timestamp' by user as all_messages_group %}
@@ -71,16 +69,14 @@
                                 {% else %}
                                     <div class="posts-list">
                                         <article>
-                                            <div class="fist-list"
-                                                 style="display: flex; justify-content: space-between;">
+                                            <div class="fist-list" style="display: flex; justify-content: space-between;">
                                                 <div style="display: flex">
                                                     <p class="title"><a
                                                             href="/messaging/{{ user.id }}/">{{ user }}</a>
                                                     </p>
                                                     {% if message.sender == request.user %}
                                                         <p>sent</p>
-                                                    {% endif %}
-                                                    {% if message.receiver == request.user %}
+                                                    {% elif message.receiver == request.user %}
                                                         <p>received</p>
                                                     {% endif %}
                                                 </div>
@@ -89,7 +85,7 @@
                                             </div>
 
                                             {% if request.user in  message.sender or message.receiver %}
-                                                <p>{{ message }}</p>
+                                                <p>{{ message.content }}</p>
                                             {% endif %}
 {#                                            {% if message.sender in  request.user %}#}
 {#                                                <p>{{ message }}</p>#}
