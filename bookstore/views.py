@@ -58,7 +58,8 @@ def category_page(request, slug):
 def send_bookstore_message(request, pk):
     book = BookStore.objects.filter(pk=pk).first()
     if request.method == 'POST':
-        form = MessageForm(request.POST)
+        # form = MessageForm(request.POST)
+        form = MessageForm(request.POST, hide_receiver=True)
         if form.is_valid():
             new_message = form.save(commit=False)
             new_message.sender = request.user
@@ -66,6 +67,6 @@ def send_bookstore_message(request, pk):
             new_message.save()
             return redirect('message_list')  # 쪽지가 성공적으로 전송되었음을 나타내는 페이지로 리다이렉트
     else:
-        form = MessageForm()
+        form = MessageForm(request.POST, hide_receiver=True)
 
     return render(request, 'messaging/message_form.html', {'form': form})
