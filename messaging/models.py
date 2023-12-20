@@ -9,8 +9,6 @@ class Message(models.Model):
     timestamp = models.DateTimeField(auto_now_add=True)
     room = f'{sender}_{receiver}'
 
-
-
     def __str__(self):
         return f"From {self.sender} to {self.receiver} : {self.content}"
 
@@ -23,8 +21,3 @@ class Message(models.Model):
 
     def get_room(self):
         return
-
-# class MessageRoom(models.Model):
-#     room_user =
-#     def __str__(self):
-#         return

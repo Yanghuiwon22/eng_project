@@ -58,12 +58,9 @@ class BookStore(models.Model):
     def get_absolute_url(self):
         return f'/bookstore/{self.pk}/'
 
+
     def get_file_name(self):
         return os.path.basename(self.img_file.name)
 
     def get_file_ext(self):
         return self.img_file().split('.')[-1]
-
-
-
-

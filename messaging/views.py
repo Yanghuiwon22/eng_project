@@ -1,25 +1,22 @@
 from django.shortcuts import render, redirect
 from .forms import MessageForm
 from .models import Message
-from django.contrib.auth.decorators import login_required
-from django.db.models import Q
 from django.contrib.auth.models import User
 from itertools import chain
-from django.views.generic import ListView, DetailView, CreateView
 
 
 # new_messaing -> 폼에서 작성 후 전송누르면 실행 (DB에 저장)
-def create_message(request):  # 쪽지 폼을 작성하고 제출하면 실행되는 함수이다.
+def create_message(request):
     if request.method == 'POST':
         form = MessageForm(request.POST)
         if form.is_valid():
-            # 폼이 유효하면 모델에 저장
             new_message = form.save(commit=False)
-            new_message.sender = request.user  # 현재 로그인한 사용자를 보낸 사람으로 설정
+            new_message.sender = request.user
             new_message.save()
             return redirect('message_list')  # 쪽지가 성공적으로 전송되었음을 나타내는 페이지로 리다이렉트
-    else:
+    else:  # GET 요청인 경우
         form = MessageForm()
+
     return render(request, 'messaging/message_form.html', {'form': form})
 
 def message_list(request):

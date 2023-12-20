@@ -32,7 +32,6 @@
         <!-- ======= Blog Section ======= -->
 
         <section id="blog" class="blog">
-
             <div class="container" data-aos="fade-up">
 
                 {#      책 등록하기 버튼#}
@@ -62,29 +61,31 @@
 
 
                     {% for item in object_list %}
-                        <div class="col-xl-4 col-md-6">
-                            <article>
-                                <div class="post-img">
-                                    <img src="{{ item.img_file.url }}" alt class="img-fluid">
-                                </div>
+                        <div class="posts-list">
+                            <div class="col-xl-4 col-md-6">
+                                <article>
+                                    <div class="post-img">
+                                        <img src="{{ item.img_file.url }}" alt class="img-fluid">
+                                    </div>
 
-                                <h2 class="title">
-                                    <div><a href="{{ item.get_absolute_url }}">{{ item.title }}</a></div>
-                                </h2>
+                                    <h2 class="title">
+                                        <div><a href="{{ item.get_absolute_url }}">{{ item.title }}</a></div>
+                                    </h2>
 
-                                <div>
-                                    <p>{{ item.author }}</p>
-                                    <p>{{ item.publisher }}</p>
-                                    <span class="price">{{ item.price }}원</span>
-                                    <span class="price-set">{{ item.price_set }}원</span>
-                                </div>
+                                    <div>
+                                        <p>{{ item.author }}</p>
+                                        <p>{{ item.publisher }}</p>
+                                        <span class="price">{{ item.price }}원</span>
+                                        <span class="price-set">{{ item.price_set }}원</span>
+                                    </div>
+
 
 
                             </article>
 
                         </div><!-- End post list item -->
+                        </div>
                     {% endfor %}
-
                 </div><!-- End blog posts list -->
         </section><!-- End Blog Section -->
 
