@@ -33,7 +33,7 @@
 
         <section id="blog" class="blog">
             <div class="container" data-aos="fade-up">
-
+<div class="row">
                 {#      책 등록하기 버튼#}
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                     <div class="pricing pricing-item">
@@ -60,8 +60,7 @@
                     </div>
 
 
-                    {% for item in object_list %}
-                        <div class="posts-list">
+                            {% for item in object_list %}
                             <div class="col-xl-4 col-md-6">
                                 <article>
                                     <div class="post-img">
@@ -78,15 +77,13 @@
                                         <span class="price">{{ item.price }}원</span>
                                         <span class="price-set">{{ item.price_set }}원</span>
                                     </div>
-
-
-
-                            </article>
-
+                                </article>
+{#                            </div>#}
                         </div><!-- End post list item -->
-                        </div>
                     {% endfor %}
-                </div><!-- End blog posts list -->
+                    </div><!-- End blog posts list -->
+                </div>
+            </div>
         </section><!-- End Blog Section -->
 
     </main><!-- End #main -->

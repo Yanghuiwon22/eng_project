@@ -35,6 +35,7 @@ class BookStore(models.Model):
     writer = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
 
     traces_opt = [
+        ('밑줄(연필/샤프)', '필기흔적 없음'),
         ('밑줄(연필/샤프)', '밑줄(연필/샤프)'),
         ('밑줄(볼펜/형광펜)', '밑줄(볼펜/형광펜)'),
         ('필기(연필/샤프)', '필기(연필/샤프)'),
@@ -42,6 +43,7 @@ class BookStore(models.Model):
     ]
     traces = MultiSelectField(max_length=101, choices=traces_opt)
     status_opt = [
+        ('밑줄(연필/샤프)', '거의 새것'),
         ('밑줄(연필/샤프)', '겉표지 깨끗함'),
         ('밑줄(볼펜/형광펜)', '이름(서명) 기입 없음'),
         ('필기(연필/샤프)', '페이지 변색 없음'),
@@ -57,7 +59,6 @@ class BookStore(models.Model):
 
     def get_absolute_url(self):
         return f'/bookstore/{self.pk}/'
-
 
     def get_file_name(self):
         return os.path.basename(self.img_file.name)

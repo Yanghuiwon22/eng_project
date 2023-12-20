@@ -69,7 +69,8 @@
                                 {% else %}
                                     <div class="posts-list">
                                         <article>
-                                            <div class="fist-list" style="display: flex; justify-content: space-between;">
+                                            <div class="fist-list"
+                                                 style="display: flex; justify-content: space-between;">
                                                 <div style="display: flex">
                                                     <p class="title"><a
                                                             href="/messaging/{{ user.id }}/">{{ user }}</a>
@@ -87,11 +88,6 @@
                                             {% if request.user in  message.sender or message.receiver %}
                                                 <p>{{ message.content }}</p>
                                             {% endif %}
-{#                                            {% if message.sender in  request.user %}#}
-{#                                                <p>{{ message }}</p>#}
-{#                                            {% endif %}#}
-
-{#                                            <p style="padding: 10px">{{ message.content }}</p>#}
                                         </article>
                                     </div>
                                 {% endif %}
@@ -102,5 +98,4 @@
             </div>
         </section>
     </main>
-
 {% endblock %}
