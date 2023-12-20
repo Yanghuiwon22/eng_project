@@ -29,20 +29,20 @@
             </nav>
         </div><!-- End Breadcrumbs -->
 
-{#    사용자별 메세지 묶어서 보여주기#}
-                <article class="blog-details">
-                        <h1 class="title">{{ book.title }}</h1>
+        {#    사용자별 메세지 묶어서 보여주기#}
+        <article class="blog-details">
+            <h1 class="title">{{ book.title }}</h1>
 
-                        <!-- Book Info Container -->
-                        <div class="book-info-container">
-                            <div class="book-info">
-                                <p><strong>저자:</strong> {{ book.author }}</p>
-                                <p><strong>출판사:</strong> {{ book.publisher }}</p>
-                                <p><strong>정가:</strong> {{ book.price_set }}원</p>
-                                <p><strong>판매가:</strong> {{ book.price }}원</p>
-                            </div>
-                        </div>
-                        <hr>
+            <!-- Book Info Container -->
+            <div class="book-info-container">
+                <div class="book-info">
+                    <p><strong>저자:</strong> {{ book.author }}</p>
+                    <p><strong>출판사:</strong> {{ book.publisher }}</p>
+                    <p><strong>정가:</strong> {{ book.price_set }}원</p>
+                    <p><strong>판매가:</strong> {{ book.price }}원</p>
+                </div>
+            </div>
+            <hr>
 
                         <!-- Trace and Status -->
                         <div class="trace-status-container">

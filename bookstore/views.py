@@ -1,11 +1,11 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect,get_object_or_404
 from django.views.generic import ListView, DetailView, CreateView
 from .models import BookStore, Category
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.urls import reverse_lazy
-from django import forms
+from messaging.views import MessageForm
 
-
+from django.urls import reverse
+from django.http import HttpResponseRedirect
 class BookStoreList(ListView):
     model = BookStore
     ordering = '-pk'
@@ -55,3 +55,17 @@ def category_page(request, slug):
         }
     )
 
+def send_bookstore_message(request, pk):
+    book = BookStore.objects.filter(pk=pk).first()
+    if request.method == 'POST':
+        form = MessageForm(request.POST)
+        if form.is_valid():
+            new_message = form.save(commit=False)
+            new_message.sender = request.user
+            new_message.receiver = book.writer
+            new_message.save()
+            return redirect('message_list')  # 쪽지가 성공적으로 전송되었음을 나타내는 페이지로 리다이렉트
+    else:
+        form = MessageForm()
+
+    return render(request, 'messaging/message_form.html', {'form': form})
