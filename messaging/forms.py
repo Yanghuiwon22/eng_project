@@ -9,6 +9,7 @@ class MessageForm(forms.ModelForm):
 
         if hide_receiver:
             self.fields['receiver'].widget = forms.HiddenInput()  # receiver 필드를 숨깁니다.
+            self.fields['receiver'].required = False
 
     class Meta:
         model = Message
