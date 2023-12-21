@@ -8,5 +8,5 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('', reserve_main, name='reserve_main'),
     path('regi/', ReserveMeal_Form.as_view(), name='reserve_regi'),
-    path('reserve_list/', reserve_list, name='reserve_list')
+    path('reserve_list/', reserve_list, name='reserve_list'),
 ]

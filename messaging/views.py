@@ -36,3 +36,4 @@ def message_list(request):
                   {'all_users': all_users,
                    'sent_messages': sent_messages, 'received_messages': received_messages,
                    'all_messages': all_messages, })
+

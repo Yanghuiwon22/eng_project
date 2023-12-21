@@ -27,4 +27,4 @@ class ReserveMeal(models.Model):
         return f"From {self.sender} to {self.receiver}: {self.content}"
 
     def get_absolute_url(self):  # 폼을 성공적으로 처리 시 이동할 페이지 주소
-        return f'/reserve_meal/'
+        return f'/messaging/reserve_list/{self.pk}'

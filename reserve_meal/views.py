@@ -2,9 +2,13 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from .models import ReserveMeal
 from itertools import chain
-from django.views.generic import CreateView
+from django.views.generic import CreateView,DetailView
 
 # Create your views here.
+class BookStoreDetail(DetailView):
+    model = ReserveMeal
+    context_object_name = 'meal'
+
 def reserve_main(request):
     all_users = User.objects.exclude(pk=request.user.pk)
 
@@ -21,8 +25,6 @@ def reserve_list(request):
     received_meals = ReserveMeal.objects.filter(receiver=request.user).order_by('-timestamp')
 
     all_meals = list(chain(sent_meals, received_meals))
-
-
 
     return render(request, 'messaging/reserve_list.html',
                   { 'all_meals':all_meals})

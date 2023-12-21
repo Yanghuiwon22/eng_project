@@ -59,9 +59,13 @@
                             {% if request.user == meal.receiver or request.user == meal.sender %}
                                 <div class="posts-list">
                                     <article>
+                                        {#                                    <article><a href="{% url '' pk=meal.pk %}">#}
                                         <div class="fist-list" style="display: flex; justify-content: space-between;">
                                             <div style="display: flex">
-                                                <p class="title">{{ request.user }}</p>
+                                                <h2 class="title">
+                                                    <div><a href="{{ meal.get_absolute_url }}">{{ user }}</a></div>
+                                                </h2>
+
                                                 {% if meal.sender == request.user %}
                                                     <p>sent</p>
                                                 {% elif meal.receiver == request.user %}
