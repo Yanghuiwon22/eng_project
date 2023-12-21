@@ -32,8 +32,10 @@ DEBUG = int(os.environ.get("DEBUG", 1))
 if os.environ.get("DJANGO_ALLOWED_HOSTS"):
     ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
 else:
+    # ALLOWED_HOSTS = ['sfarm.taegon.kr', '113.198.63.26', 'sfarm.taegon.kr:23030']
     ALLOWED_HOSTS = []
 # Invalid HTTP_HOST header: 'sfarm.taegon.kr:23030'. You may need to add 'sfarm.taegon.kr' to ALLOWED_HOSTS.
+
 
 
 # Application definition
@@ -148,7 +150,7 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, '_static')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, '_media')
