@@ -13,7 +13,7 @@
                 <div class="container position-relative">
                     <div class="row d-flex justify-content-center">
                         <div class="col-lg-6 text-center">
-                            <h2>message</h2>
+                            <h2>reserve meal</h2>
                             <p>마이페이지</p>
                         </div>
                     </div>
@@ -23,65 +23,64 @@
                 <div class="container">
                     <ol>
                         <li><a href="{% url 'my_page' %}">my_page</a></li>
-                        <li>message</li>
+                        <li>reserve meal</li>
                     </ol>
                 </div>
             </nav>
         </div><!-- End Breadcrumbs -->
 
+        {# 밥약 처리 부분 #}
         <section id="blog" class="blog">
             <div class="container" data-aos="fade-up">
                 <div class="row">
-
-                    <div class="messaging-select" style="display: flex; padding-bottom: 20px" >
-                        <div class="d-grid gap-2 d-md-flex justify-content-md-end" style="padding-right: 10px">
-                            <div class="pricing pricing-item">
-                                <a href="{% url 'message_list' %}" class="buy-btn">쪽지</a>
+                    {# 쪽지보내기 버튼 #}
+                    <div class="messaging-select"
+                         style="display: flex; justify-content: space-between; padding-bottom: 20px">
+                        <div class="messaging-select-left" style="display: flex;">
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end" style="padding-right: 10px">
+                                <div class="pricing pricing-item">
+                                    <a href="{% url 'message_list' %}" class="buy-btn">쪽지</a>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                            <div class="pricing pricing-item">
-                                <a href="{% url 'reserve_list' %}" class="buy-btn">밥약</a>
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                <div class="pricing pricing-item">
+                                    <a href="{% url 'reserve_list' %}" class="buy-btn">밥약</a>
+                                </div>
                             </div>
                         </div>
                     </div>
 
                     {% regroup all_meals|dictsortreversed:'timestamp' by user as all_meals_group %}
 
+                    {# 쪽지 기능 #}
                     {% for group in all_meals_group %}
-                        {% for meals in group.list %}
-                            {% for user in all_users %}
-                                {% if not user == meals.sender and not user == meals.receiver %}
-                                {% else %}
-                                    {{ meals }}
-                                    <div class="posts-list">
-                                        <article>
-                                            <div class="fist-list"
-                                                 style="display: flex; justify-content: space-between;">
-                                                <div style="display:flex;">
-                                                    <p class="title"><a
-                                                            href="/messaging/{{ user.id }}/">{{ user }}</a>
-                                                    </p>
-                                                    {% if meals.sender == request.user %}
-                                                        <p>sent</p>
-                                                    {% endif %}
-                                                    {% if meals.receiver == request.user %}
-                                                        <p>received</p>
-                                                    {% endif %}
-                                                </div>
-                                                <p>{{ meals.timestamp }}</p>
+                        {% for meal in group.list %}
+                            {% if request.user == meal.receiver or request.user == meal.sender %}
+                                <div class="posts-list">
+                                    <article>
+                                        <div class="fist-list" style="display: flex; justify-content: space-between;">
+                                            <div style="display: flex">
+                                                <p class="title">{{ request.user }}</p>
+                                                {% if meal.sender == request.user %}
+                                                    <p>sent</p>
+                                                {% elif meal.receiver == request.user %}
+                                                    <p>received</p>
+                                                {% endif %}
                                             </div>
-                                            {{ meals.content }}
-                                        </article>
-                                    </div>
-                                {% endif %}
-                            {% endfor %}
+                                            <p>{{ meal.timestamp }}</p>
+                                        </div>
+
+                                        {% if request.user == meal.sender or request.user == meal.receiver %}
+                                            <p>{{ meal.content }}</p>
+                                        {% endif %}
+                                    </article>
+                                </div>
+                            {% endif %}
                         {% endfor %}
                     {% endfor %}
                 </div>
             </div>
         </section>
     </main>
-
 {% endblock %}

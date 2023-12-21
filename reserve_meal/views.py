@@ -13,8 +13,6 @@ def reserve_main(request):
 
     all_meals = list(chain(sent_meals, received_meals))
 
-
-
     return render(request, 'reserve_meal/reserve_main.html',
                   {'all_users': all_users, 'all_meals':all_meals})
 
