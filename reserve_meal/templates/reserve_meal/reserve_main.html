@@ -34,29 +34,26 @@
         <section id="blog" class="blog">
             <div class="container" data-aos="fade-up">
                 <div class="row">
--6
                     {#      책 등록하기 버튼#}
-                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                        <div class="pricing pricing-item">
-                            <a href="{% url 'bookstore_register_form' %}" class="buy-btn">책 등록하기</a>
+                    <div class="reserve-meal-list-menu" style="display: flex">
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end" style="padding-right: 10px">
+                            <div class="pricing pricing-item">
+                                <a href="{% url 'reserve_regi' %}" class="buy-btn" >지정하여 신청하기</a>
+                            </div>
+                        </div>
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <div class="pricing pricing-item">
+                                <a href="{% url 'bookstore_register_form' %}" class="buy-btn">익명으로 신청하기</a>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="row gy-4 posts-list">
-                        <div class="col-xl-6 col-md-6">
-                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                <div class="pricing pricing-item">
-                                    <a href="{% url 'bookstore_register_form' %}">지정해서 신청하기</a>
-                                </div>
-                            </div>
-                            {#                            </div>#}
-                        </div><!-- End post list item -->
-                        <div class="col-xl-6 col-md">
-                            <article>
-                                <p>익명으로 신청하기</p>
-                            </article>
-                            {#                            </div>#}
-                        </div>
+                    <div class="col-xl-6 col-md">
+                        <article>
+
+                        </article>
+                        {#                            </div>#}
+                    </div>
                     </div><!-- End blog posts list -->
                 </div>
             </div>
