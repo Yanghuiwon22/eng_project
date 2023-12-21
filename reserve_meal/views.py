@@ -26,12 +26,22 @@ def reserve_list(request):
 
     all_meals = list(chain(sent_meals, received_meals))
 
-    return render(request, 'messaging/reserve_list.html',
+    return render(request, 'reserve_meal/reserve_list.html',
                   { 'all_meals':all_meals})
 
 class ReserveMeal_Form(CreateView):
     model = ReserveMeal
     fields = ['receiver','timetable','content']
+
+    def form_valid(self, form):
+        current_user = self.request.user
+        if current_user.is_authenticated:
+            form.instance.sender = current_user
+            return super(ReserveMeal_Form, self).form_valid(form)
+
+class ReserveMeal_Form_Secret(CreateView):
+    model = ReserveMeal
+    fields = ['receiver','food','content']
 
     def form_valid(self, form):
         current_user = self.request.user
