@@ -34,8 +34,6 @@ if os.environ.get("DJANGO_ALLOWED_HOSTS"):
 else:
     # ALLOWED_HOSTS = ['sfarm.taegon.kr', '113.198.63.26', 'sfarm.taegon.kr:23030']
     ALLOWED_HOSTS = []
-# Invalid HTTP_HOST header: 'sfarm.taegon.kr:23030'. You may need to add 'sfarm.taegon.kr' to ALLOWED_HOSTS.
-
 
 
 # Application definition
