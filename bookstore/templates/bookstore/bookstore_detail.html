@@ -33,7 +33,6 @@
 
 <!-- ======= Blog Details Section ======= -->
     <section id="blog" class="blog">
-
         <div class="container" data-aos="fade-up">
             <div class="row g-5">
                 <div class="col-lg-12">
@@ -41,15 +40,17 @@
 
                         <div class="blog-details-head" style="display: flex; justify-content: space-between;">
                             <h1 class="title">{{ book.title }}</h1>
+
                             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                <div class="pricing pricing-item" style="display: flex">
-                                    <form method="POST" action="{% url 'bookstore_sold' pk=book.id %}">
-                                        {% csrf_token %}
-                                        <button type="submit">판매완료</button>
-                                    </form>
+                                <div class="pricing pricing-item">
                                     <a href="{% url 'send_bookstore_message' pk=book.id %}" class="buy-btn">판매자 연락하기</a>
                                 </div>
                             </div>
+
+{#                                <form method="POST" action="{% url 'bookstore_sold' pk=book.id %}">#}
+{#                                        {% csrf_token %}#}
+{#                                        <button type="submit">판매완료</button>#}
+{#                                    </form>#}
                         </div>
 
                         <hr/>

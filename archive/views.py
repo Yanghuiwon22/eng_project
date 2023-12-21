@@ -64,7 +64,7 @@ def category_page(request, slug):
 
         return render(
             request,
-            'archive/archive_list.html',
+            'archive/templates/archive/archive_list.html',
             {
                 'archive_list': archive_list,
                 'categories': Category.objects.all(),

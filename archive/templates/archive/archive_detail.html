@@ -32,58 +32,63 @@
 
 
         <!-- ======= Blog Details Section ======= -->
+                <div class="blog">
+
         <div class="container" data-aos="fade-up">
-            <div class="row g-5">
-                <div class="col-lg-8">
-                    <article class="blog-details">
-                        <h1 class="title">{{ archive.title }}</h1>
 
-                        <!-- Book Info Container -->
-                        <div class="archive-info-container">
-                            <div class="archive-info">
-                                <p><strong>교수:</strong> {{ archive.professor }}</p>
-                                <p><strong>과목:</strong> {{ archive.subject }}</p>
-                                <p><strong>학생:</strong> {{ archive.student }}</p>
-                                <p><strong>내용:</strong> {{ archive.content }}</p>
+                <div class="row g-5">
+                    <div class="col-lg-12">
+                        <article class="blog-details">
+                            <h1 class="title">{{ archive.title }}</h1>
+                            <hr>
+                            <!-- Book Info Container -->
+                            <div class="archive-info-container">
+                                <div class="archive-info">
+                                    <p><strong>교수:</strong> {{ archive.professor }}</p>
+                                    <p><strong>과목:</strong> {{ archive.subject }}</p>
+                                    <p><strong>학생:</strong> {{ archive.student }}</p>
+                                    <p><strong>내용:</strong> {{ archive.content }}</p>
+                                </div>
                             </div>
-                        </div>
-                        <hr>
+                            <hr>
 
-                        <!-- Trace and Status -->
-                        <div class="trace-status-container">
-                            {#                        <p><strong>필기한 흔적 :</strong> {{ book.traces }}</p>#}
-                            {#                        <p><strong>보존 상태:</strong> {{ book.status }}</p>#}
-                            {#                    </div>#}
-                            {#                    <hr>#}
-{#                            <iframe width="100%" height="600" src="{{ archive.file_upload }}"></iframe>#}
-{#                        <iframe width="100%" height="600" src="{% static archive.file_upload %}"></iframe>#}
-{#                            <iframe width="100%" height="600" src="{{ file_upload }}"></iframe>#}
+                            <!-- Trace and Status -->
+                            <div class="trace-status-container">
+                                {#                        <p><strong>필기한 흔적 :</strong> {{ book.traces }}</p>#}
+                                {#                        <p><strong>보존 상태:</strong> {{ book.status }}</p>#}
+                                {#                    </div>#}
+                                {#                    <hr>#}
+                                {#                            <iframe width="100%" height="600" src="{{ archive.file_upload }}"></iframe>#}
+                                {#                        <iframe width="100%" height="600" src="{% static archive.file_upload %}"></iframe>#}
+                                {#                            <iframe width="100%" height="600" src="{{ file_upload }}"></iframe>#}
 
 
-                            <!-- Book Image -->
-                            <div class="book-image-container">
-                                <img src="{{ book.img_file.url }}" alt="{{ book.title }}" class="book-image">
+                                <!-- Book Image -->
+                                <div class="book-image-container">
+                                    <img src="{{ book.img_file.url }}" alt="{{ book.title }}" class="book-image">
+                                </div>
+
+                                {% if book.file_upload %}
+                                    <a href="{{ book.file_upload.url }}" class="btn btn-outline-dark" role="button">
+                                        <i class="fa-solid fa-download"></i>
+                                        {% if book.get_file_ext == "csv" %}
+                                            <i class="fas fa-file-csv"></i>
+                                        {% elif book.get_file_ext == "xlsx" or book.get_file_ext == "xls" %}
+                                            <i class="fas fa-file-excel"></i>
+                                        {% elif book.get_file_ext == "docx" or book.get_file_ext == "doc" %}
+                                            <i class="fas fa-file-word"></i>
+                                        {% else %}
+                                            <i class="far fa-file"></i>
+                                        {% endif %}
+                                        {{ book.get_file_name }}
+                                    </a>
+                                {% endif %}
                             </div>
-
-                            {% if book.file_upload %}
-                                <a href="{{ book.file_upload.url }}" class="btn btn-outline-dark" role="button">
-                                    <i class="fa-solid fa-download"></i>
-                                    {% if book.get_file_ext == "csv" %}
-                                        <i class="fas fa-file-csv"></i>
-                                    {% elif book.get_file_ext == "xlsx" or book.get_file_ext == "xls" %}
-                                        <i class="fas fa-file-excel"></i>
-                                    {% elif book.get_file_ext == "docx" or book.get_file_ext == "doc" %}
-                                        <i class="fas fa-file-word"></i>
-                                    {% else %}
-                                        <i class="far fa-file"></i>
-                                    {% endif %}
-                                    {{ book.get_file_name }}
-                                </a>
-                            {% endif %}
-                    </article>
+                        </article>
+                    </div>
                 </div>
             </div>
-        </div><!-- End #main -->
+        </div>
     </main>
 
     <style>
@@ -95,6 +100,5 @@
             margin: auto; /* 이미지 중앙 정렬 */
         }
     </style>
-
 
 {% endblock %}

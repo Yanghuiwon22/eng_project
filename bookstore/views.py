@@ -56,10 +56,10 @@ def category_page(request, slug):
     )
 
 def send_bookstore_message(request, pk):
-    book = BookForm_Form.objects.filter(pk=pk).first()
+    book = BookStore.objects.filter(pk=pk).first()
     if request.method == 'POST':
-        # form = MessageForm(request.POST)
-        form = BookForm_Form(request.POST, hide_receiver=True)
+        form = MessageForm(request.POST)
+        # form = BookForm_Form(request.POST, hide_receiver=True)
         if form.is_valid():
             new_message = form.save(commit=False)
             new_message.sender = request.user

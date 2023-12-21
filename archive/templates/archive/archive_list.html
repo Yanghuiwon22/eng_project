@@ -38,24 +38,14 @@
                 <div class="row">
 
                     <!-- 자료 등록하기 버튼 -->
+                 <div style="padding-bottom: 20px;">
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                         <div class="pricing pricing-item">
                             <a href="{% url 'archive_register_form' %}" class="buy-btn">자료 등록하기</a>
                         </div>
                     </div>
+                </div>
 
-                    {#                    {% for item in object_list %}#}
-                    {#                        <div class="col-xl-12 col-md-12">#}
-                    {#                            <article style="display: flex; justify-content: space-between">#}
-                    {#                                <h2 class="title">#}
-                    {#                                    <div class="title"><a href="{{ item.get_absolute_url }}">{{ item.title }}</a></div>#}
-                    {#                                </h2>#}
-                    {#                                <p>{{ item.professor }}</p>#}
-                    {#                                <p>{{ item.student }}</p>#}
-                    {#                            </article>#}
-                    {#                        </div>#}
-                    {#                    {% endfor %}#}
-                    {##}<!-- 게시판 -->
                     <div class="container">
                         <div class="row">
                             <table class="table table-striped" style="text-align:center; border:1px solid #dddddd">
@@ -64,32 +54,30 @@
                                     <th style="background-color:#eeeeee; text-align:center;">번호</th>
                                     <th style="background-color:#eeeeee; text-align:center;">제목</th>
                                     <th style="background-color:#eeeeee; text-align:center;">작성자 </th>
-                                    <th style="background-color:#eeeeee; text-align:center;">작성자</th>
+                                    <th style="background-color:#eeeeee; text-align:center;">작성일</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                {{ item.title }}
-                                {{ item.author }}
-                                {{ item.created_at }}
-{#                                <tr>#}
-{#                                    <td>1</td>#}
-{#                                    <td>안녕하세요.</td>#}
-{#                                    <td>홍길동</td>#}
-{#                                    <td>2020-06-17</td>#}
-{#                                </tr>#}
-{#                                <tr>#}
-{#                                    <td>1</td>#}
-{#                                    <td>안녕하세요.</td>#}
-{#                                    <td>홍길동</td>#}
-{#                                    <td>2020-06-17</td>#}
-{#                                </tr>#}
+                                {% for item in object_list %}
+                                    <tr>
+                                        <td>{{ item.pk }}</td>
+                                        <td><a href="{{ item.get_absolute_url }}">{{ item.title }}</a></td>
+                                        <td>{{ item.writer }}</td>
+                                        <td>{{ item.created_at }}</td>
+                                    </tr>
+                                {% endfor %}
                                 </tbody>
-                                </table>
-                            <a href="write.jsp" class="btn btn-primary pull-right">글쓰기</a>
-                            </div></div>
+                            </table>
+{#                            <a href="write.jsp" class="btn btn-primary pull-right">글쓰기</a>#}
+                        </div>
+                    </div>
                 </div><!-- End blog posts list -->
             </div>
         </section><!-- End Blog Section -->
+
+        <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+        <script src="single_pages/static/js/main.js"></script>
     </main><!-- End #main -->
 
 {% endblock %}
