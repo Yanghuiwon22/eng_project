@@ -8,7 +8,6 @@ services:
       - ./:/usr/src/app/
     ports:
       - 23030:23030
-    env_file:
-      - ./.env.dev
+
 
 

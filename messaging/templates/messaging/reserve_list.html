@@ -33,34 +33,20 @@
             <div class="container" data-aos="fade-up">
                 <div class="row">
 
+                    <div class="messaging-select" style="display: flex; padding-bottom: 20px" >
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end" style="padding-right: 10px">
+                            <div class="pricing pricing-item">
+                                <a href="{% url 'message_list' %}" class="buy-btn">쪽지</a>
+                            </div>
+                        </div>
 
-                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                        <div class="pricing pricing-item">
-                            <a href="{% url 'new_message' %}" class="buy-btn">쪽지보내기</a>
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <div class="pricing pricing-item">
+                                <a href="{% url 'reserve_list' %}" class="buy-btn">밥약</a>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                        <div class="pricing pricing-item">
-                            <a href="{% url 'message_list' %}" class="buy-btn">쪽지</a>
-                        </div>
-                    </div>
-
-                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                        <div class="pricing pricing-item">
-                            <a href="{% url 'reserve_list' %}" class="buy-btn">밥약</a>
-                        </div>
-                    </div>
-
-                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                        <div class="pricing pricing-item">
-                            <a href="{% url 'reserve_regi' %}" class="buy-btn">밥약잡기</a>
-                        </div>
-                    </div>
-
-
-                    <p>로드중입니다...</p>
-                    <hr/>
                     {% regroup all_meals|dictsortreversed:'timestamp' by user as all_meals_group %}
 
                     {% for group in all_meals_group %}
@@ -68,6 +54,7 @@
                             {% for user in all_users %}
                                 {% if not user == meals.sender and not user == meals.receiver %}
                                 {% else %}
+                                    {{ meals }}
                                     <div class="posts-list">
                                         <article>
                                             <div class="fist-list"

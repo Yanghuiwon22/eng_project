@@ -41,13 +41,25 @@
                         <div class="blog-details-head" style="display: flex; justify-content: space-between;">
                             <h1 class="title">{{ book.title }}</h1>
 
-                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                <div class="pricing pricing-item">
-                                    <a href="{% url 'send_bookstore_message' pk=book.id %}" class="buy-btn">판매자 연락하기</a>
+                            <div class="book-detail" style="display: flex">
+                                <div class="d-grid gap-2 d-md-flex justify-content-md-end" style="padding-right: 10px">
+                                    <div class="pricing pricing-item">
+                                        <a href="{% url 'send_bookstore_message' pk=book.id %}" class="buy-btn">판매자
+                                            연락하기</a>
+                                    </div>
                                 </div>
+
+                                {% if book.writer == request.user %}
+                                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                        <div class="pricing pricing-item">
+                                            <a href="{% url 'bookstore_sold' pk=book.id %}" class="buy-btn">판매완료</a>
+                                        </div>
+                                    </div>
+                                {% endif %}
                             </div>
 
-{#                                <form method="POST" action="{% url 'bookstore_sold' pk=book.id %}">#}
+
+                            {#                                <form method="POST" action="{% url 'bookstore_sold' pk=book.id %}">#}
 {#                                        {% csrf_token %}#}
 {#                                        <button type="submit">판매완료</button>#}
 {#                                    </form>#}

@@ -58,7 +58,7 @@ def category_page(request, slug):
 def send_bookstore_message(request, pk):
     book = BookStore.objects.filter(pk=pk).first()
     if request.method == 'POST':
-        form = MessageForm(request.POST)
+        form = MessageForm(request.POST, hide_receiver=True)
         # form = BookForm_Form(request.POST, hide_receiver=True)
         if form.is_valid():
             new_message = form.save(commit=False)
