@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from .models import ReserveMeal
 from itertools import chain
 from django.views.generic import CreateView,DetailView
+from django.urls import reverse_lazy
 
 # Create your views here.
 class ReserveMealDetail(DetailView):
@@ -41,7 +42,8 @@ class ReserveMeal_Form(CreateView):
 
 class ReserveMeal_Form_Secret(CreateView):
     model = ReserveMeal
-    fields = ['receiver','food','content']
+    fields = ['timetable','food','content']
+    template_name = 'reserve_meal/reservemeal_form_secret.html'
 
     def form_valid(self, form):
         current_user = self.request.user
