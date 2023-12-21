@@ -49,17 +49,13 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
     'crispy_forms',
-    'blog',
     'single_pages',
-    'todo_app',
     'archive',
-    'notice',
     'bookstore',
     'reserve_meal',
     'bootstrap4',
     'channels',
     'messaging',
-
 ]
 
 ASGI_APPLICATION = 'eng_projext.asgi.application'

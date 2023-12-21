@@ -1,65 +1,85 @@
 {% extends 'single_pages/layout.html' %}
-{%  block content %}
+{% block content %}
 
     {% load static %}
 
-<title>Archive detail</title>
+    <title>Archive detail</title>
 
 
-<main id="main">
+    <main id="main">
 
-    <!-- ======= Breadcrumbs ======= -->
-    <div class="breadcrumbs">
-      <div class="page-header d-flex align-items-center">
-        <div class="container position-relative">
-          <div class="row d-flex justify-content-center">
-            <div class="col-lg-6 text-center">
-              <h2>Archive Register</h2>
-              <p>자료실에 있는 자세한 정보를 알 수 있다.</p>
+        <!-- ======= Breadcrumbs ======= -->
+        <div class="breadcrumbs">
+            <div class="page-header d-flex align-items-center">
+                <div class="container position-relative">
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-lg-6 text-center">
+                            <h2>Archive Register</h2>
+                            <p>자료실에 있는 자세한 정보를 알 수 있다.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-      </div>
-      <nav>
-        <div class="container">
-          <ol>
-            <li><a href="{% url 'archive_list' %}">Archive list</a></li>
-            <li>Archive Details</li>
-          </ol>
-        </div>
-      </nav>
-    </div><!-- End Breadcrumbs -->
+            <nav>
+                <div class="container">
+                    <ol>
+                        <li><a href="{% url 'archive_list' %}">Archive list</a></li>
+                        <li>Archive Details</li>
+                    </ol>
+                </div>
+            </nav>
+        </div><!-- End Breadcrumbs -->
 
 
-<!-- ======= Blog Details Section ======= -->
+        <!-- ======= Blog Details Section ======= -->
         <div class="container" data-aos="fade-up">
             <div class="row g-5">
                 <div class="col-lg-8">
                     <article class="blog-details">
-                        <h1 class="title">{{ book.title }}</h1>
+                        <h1 class="title">{{ archive.title }}</h1>
 
                         <!-- Book Info Container -->
-                        <div class="book-info-container">
-                            <div class="book-info">
-                                <p><strong>저자:</strong> {{ book.author }}</p>
-                                <p><strong>출판사:</strong> {{ book.publisher }}</p>
-                                <p><strong>정가:</strong> {{ book.price_set }}원</p>
-                                <p><strong>판매가:</strong> {{ book.price }}원</p>
+                        <div class="archive-info-container">
+                            <div class="archive-info">
+                                <p><strong>교수:</strong> {{ archive.professor }}</p>
+                                <p><strong>과목:</strong> {{ archive.subject }}</p>
+                                <p><strong>학생:</strong> {{ archive.student }}</p>
+                                <p><strong>내용:</strong> {{ archive.content }}</p>
                             </div>
                         </div>
                         <hr>
 
                         <!-- Trace and Status -->
                         <div class="trace-status-container">
-                            <p><strong>필기한 흔적 :</strong> {{ book.traces }}</p>
-                            <p><strong>보존 상태:</strong> {{ book.status }}</p>
-                        </div>
-                        <hr>
+                            {#                        <p><strong>필기한 흔적 :</strong> {{ book.traces }}</p>#}
+                            {#                        <p><strong>보존 상태:</strong> {{ book.status }}</p>#}
+                            {#                    </div>#}
+                            {#                    <hr>#}
+{#                            <iframe width="100%" height="600" src="{{ archive.file_upload }}"></iframe>#}
+{#                        <iframe width="100%" height="600" src="{% static archive.file_upload %}"></iframe>#}
+{#                            <iframe width="100%" height="600" src="{{ file_upload }}"></iframe>#}
 
-                        <!-- Book Image -->
-                        <div class="book-image-container">
-                            <img src="{{ book.img_file.url }}" alt="{{ book.title }}" class="book-image">
-                        </div>
+
+                            <!-- Book Image -->
+                            <div class="book-image-container">
+                                <img src="{{ book.img_file.url }}" alt="{{ book.title }}" class="book-image">
+                            </div>
+
+                            {% if book.file_upload %}
+                                <a href="{{ book.file_upload.url }}" class="btn btn-outline-dark" role="button">
+                                    <i class="fa-solid fa-download"></i>
+                                    {% if book.get_file_ext == "csv" %}
+                                        <i class="fas fa-file-csv"></i>
+                                    {% elif book.get_file_ext == "xlsx" or book.get_file_ext == "xls" %}
+                                        <i class="fas fa-file-excel"></i>
+                                    {% elif book.get_file_ext == "docx" or book.get_file_ext == "doc" %}
+                                        <i class="fas fa-file-word"></i>
+                                    {% else %}
+                                        <i class="far fa-file"></i>
+                                    {% endif %}
+                                    {{ book.get_file_name }}
+                                </a>
+                            {% endif %}
                     </article>
                 </div>
             </div>
