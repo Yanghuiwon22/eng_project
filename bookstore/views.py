@@ -56,10 +56,10 @@ def category_page(request, slug):
     )
 
 def send_bookstore_message(request, pk):
-    book = BookStore.objects.filter(pk=pk).first()
+    book = BookForm_Form.objects.filter(pk=pk).first()
     if request.method == 'POST':
         # form = MessageForm(request.POST)
-        form = MessageForm(request.POST, hide_receiver=True)
+        form = BookForm_Form(request.POST, hide_receiver=True)
         if form.is_valid():
             new_message = form.save(commit=False)
             new_message.sender = request.user
@@ -70,3 +70,12 @@ def send_bookstore_message(request, pk):
         form = MessageForm(request.POST, hide_receiver=True)
 
     return render(request, 'messaging/message_form.html', {'form': form})
+
+def bookstore_sold(request, pk):
+    book = get_object_or_404(BookStore, pk=pk)
+    book.is_sold = True  # 판매 완료 상태를 표시하는 필드를 업데이트합니다.
+
+    if book.is_sold:
+        book.delete()
+    return render(request, 'bookstore/bookstore_soldout.html')
+
