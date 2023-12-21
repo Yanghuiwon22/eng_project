@@ -109,53 +109,12 @@
             <div class="row">
                 <div class="col-lg">
                     <div class="blog-details">
-                        <h1>Book Register</h1>
+                        <h1>Data upload</h1>
                         <hr/>
                         <div class="content">
                             <form method="post" enctype="multipart/form-data">
                                 {% csrf_token %}
-{#                                <!-- Title, Publisher, Author, Price set, Price container -->#}
-{#                                <div class="form-group title-container">#}
-{#                                    <label for="{{ form.title.id_for_label }}">책 제목</label>#}
-{#                                    {{ form.title }}#}
-{#                                    <label for="{{ form.author.id_for_label }}">저자</label>#}
-{#                                    {{ form.author }}#}
-{#                                    <label for="{{ form.publisher.id_for_label }}">출판사</label>#}
-{#                                    {{ form.publisher }}#}
-{#                                    <label for="{{ form.writer.id_for_label }}">판매 등록인</label>#}
-{#                                    {{ form.writer }}#}
-{#                                    <label for="{{ form.category.id_for_label }}">카테고리</label>#}
-{#                                    {{ form.category }}#}
-{#                                </div>#}
-{#                                <hr/>#}
-{#                                <!-- Content container -->#}
-{#                                <div class="form-group price_set-container">#}
-{#                                    <label for="{{ form.price_set.id_for_label }}">정가</label>#}
-{#                                    {{ form.price_set }}#}
-{#                                    <label for="{{ form.price.id_for_label }}">판매가</label>#}
-{#                                    {{ form.price }}#}
-{#                                    <label for="{{ form.content.id_for_label }}">내용</label>#}
-{#                                    {{ form.content }}#}
-{#                                </div>#}
-{#                                <hr/>#}
-{#                                <!-- Image container -->#}
-{#                                <div class="form-group img-container">#}
-{#                                    <label for="{{ form.img_file.id_for_label }}">실제 사진을 찍어주세요</label>#}
-{#                                    {{ form.img_file }}#}
-{#                                </div>#}
-{#                                <hr/>#}
-{#                                <!-- Traces, Status container -->#}
-{#                                <div class="form-group traces-status-container">#}
-{#                                    <!-- Traces -->#}
-{#                                    <label for="{{ form.traces.id_for_label }}">필기한 흔적이 있나요?</label>#}
-{#                                    {{ form.traces }}#}
-{#                                    <hr/>#}
-{#                                    <!-- Status -->#}
-{#                                    <label for="{{ form.status.id_for_label }}">보존상태는 어떤가요?</label>#}
-{#                                    {{ form.status }}#}
-{#                                </div>#}
                                 {{ form }}
-{#                                <button type="submit">Upload PDF</button>#}
                                 <hr/>
                                 <button type="submit">제출</button>
                             </form>
