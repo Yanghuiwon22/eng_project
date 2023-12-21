@@ -79,9 +79,7 @@
                                                     {% endif %}
                                                 </div>
                                                 <p>{{ message.timestamp }}</p>
-
                                             </div>
-
                                             {% if request.user in  message.sender or message.receiver %}
                                                 <p>{{ message.content }}</p>
                                             {% endif %}

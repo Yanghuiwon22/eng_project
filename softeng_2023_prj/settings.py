@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 import os
 from pathlib import Path
+
+import DIRS
+
 # from allauth.socialaccount.models import SocialApp
 #
 # SocialApp.objects.create(provider='google', name='Google', client_id='395496789287-mc5bn0ek2s8c92eg6agrspt29b9gk84k.apps.googleusercontent.com', secret='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')
@@ -96,10 +99,10 @@ TEMPLATES = [
             ],
         },
     },
+    {DIRS: [os.path.join(BASE_DIR, 'templates')]}
 ]
 
 WSGI_APPLICATION = 'softeng_2023_prj.wsgi.application'
-
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
@@ -168,5 +171,5 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 LOGIN_REDIRECT_URL = '/'
 
-
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+

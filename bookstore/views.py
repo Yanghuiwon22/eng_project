@@ -39,7 +39,6 @@ class BookForm_Form(LoginRequiredMixin, CreateView):
         else:
             return redirect('/bookstore/bookstore_list')
 
-
 def category_page(request, slug):
     category = Category.objects.get(slug=slug)
     book_list = BookStore.objects.filter(category=category)
