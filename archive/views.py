@@ -28,7 +28,7 @@ class ArchiveDetail(DetailView):
 class ArchiveForm(forms.ModelForm):
     class Meta:
         model = Archive
-        fields = ['title', 'professor', 'subject', 'student', 'content', 'file_upload', 'head_image']
+        fields = ['title', 'author', 'professor', 'subject', 'student', 'content', 'file_upload', 'head_image']
 
 class ArchiveForm_Form(LoginRequiredMixin, CreateView):
     model = Archive
@@ -75,3 +75,4 @@ def category_page(request, slug):
     except Category.DoesNotExist:
         # 처리하고자 하는 예외 발생 시 redirect 또는 다른 처리 추가
         return redirect('archive:archive_list')
+
