@@ -45,22 +45,22 @@
                     </div>
 
                     <div class="row gy-4 posts-list">
-                        <div class="sidebar">
-                            <div class="sidebar-item categories">
-                                <h3 class="sidebar-title">Categories</h3>
-                                {% for category in categories %} <!-- 카테고리 목록으로 보여주는 곳 -->
-                                    <div class="categories-setting"
-                                         style="flex-direction: row; display: flex; justify-content: space-between">
-                                        <li>
-                                            <a href="{{ category.get_absolute_url }}">{{ category }}
-                                                ({{ category.bookstore_set.count }})</a>
-                                        </li>
-                                    </div>
-
-                                {% endfor %}
-                                </ul>
-                            </div><!-- End sidebar categories-->
-                        </div>
+{#                        <div class="sidebar">#}
+{#                            <div class="sidebar-item categories">#}
+{#                                <h3 class="sidebar-title">Categories</h3>#}
+{#                                {% for category in categories %} <!-- 카테고리 목록으로 보여주는 곳 -->#}
+{#                                    <div class="categories-setting"#}
+{#                                         style="flex-direction: row; display: flex; justify-content: space-between">#}
+{#                                        <li>#}
+{#                                            <a href="{{ category.get_absolute_url }}">{{ category }}#}
+{#                                                ({{ category.bookstore_set.count }})</a>#}
+{#                                        </li>#}
+{#                                    </div>#}
+{##}
+{#                                {% endfor %}#}
+{#                                </ul>#}
+{#                            </div><!-- End sidebar categories-->#}
+{#                        </div>#}
 
                         {% for item in object_list %}
                             <div class="col-xl-4 col-md-6">

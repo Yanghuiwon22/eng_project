@@ -28,7 +28,7 @@ class BookStoreDetail(DetailView):
 
 class BookForm_Form(LoginRequiredMixin, CreateView):
     model = BookStore
-    fields = ['title', 'author', 'publisher', 'category', 'price_set', 'price', 'img_file', 'content', 'traces', 'status']
+    fields = ['title', 'author', 'publisher', 'price_set', 'price', 'img_file', 'content', 'traces', 'status']
     # success_url = reverse_lazy('bookstore_list')  # 'bookstore_list'는 실제로 리다이렉트할 URL 이름으로 수정해야 합니다.
 
     def form_valid(self, form):

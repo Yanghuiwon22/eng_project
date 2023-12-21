@@ -57,43 +57,20 @@
                             <br>
                             <hr>
                             <p><strong>첨부파일</strong></p>
-                            {#                        {% if archive.file_upload %}#}
-                            {#                        <a href="{{ archive.file_upload.url }}" class="btn btn-outline-dark" role="button">#}
-                            {#                            <i class="fa-solid fa-download"></i>#}
-                            {#                            {% if archive.get_file_ext == "csv" %}#}
-                            {#                            <i class="fas fa-file-csv"></i>#}
-                            {#                            {% elif archive.get_file_ext == "xlsx" or archive.get_file_ext == "xls" %}#}
-                            {#                            <i class="fas fa-file-excel"></i>#}
-                            {#                            {% elif archive.get_file_ext == "docx" or archive.get_file_ext == "doc" %}#}
-                            {#                            <i class="fas fa-file-word"></i>#}
-                            {#                            {% else %}#}
-                            {#                            <i class="far fa-file"></i>#}
-                            {#                            {% endif %}#}
-                            {#                            {{ archive.get_file_name }}#}
-                            {#                        </a>#}
-                            {#                        {% endif %}#}
-                            <!-- 변경된 부분 -->
-                            {% if archive.file_uploads.all %}
-                                {% for file_upload in archive.file_uploads.all %}
-                                    <a href="{{ file_upload.file.url }}" class="btn btn-outline-dark" role="button">
-                                        <i class="fa-solid fa-download"></i>
-                                        {% with file_ext=file_upload.file.name|split:"."|last %}
-                                            {% if file_ext == "pdf" %}
-                                                <i class="fas fa-file-pdf"></i>
-                                            {% elif file_ext == "csv" %}
-                                                <i class="fas fa-file-csv"></i>
-                                            {% elif file_ext == "xlsx" or file_ext == "xls" %}
-                                                <i class="fas fa-file-excel"></i>
-                                            {% elif file_ext == "docx" or file_ext == "doc" %}
-                                                <i class="fas fa-file-word"></i>
-                                            {% else %}
-                                                <i class="far fa-file"></i>
-                                            {% endif %}
-                                        {% endwith %}
-                                        {{ file_upload.file.name }}
-                                    </a>
-                                    <br>
-                                {% endfor %}
+                            {% if archive.file_upload %}
+                                <a href="{{ archive.file_upload.url }}" class="btn btn-outline-dark" role="button">
+                                    <i class="fa-solid fa-download"></i>
+                                    {% if archive.get_file_ext == "csv" %}
+                                        <i class="fas fa-file-csv"></i>
+                                    {% elif archive.get_file_ext == "xlsx" or archive.get_file_ext == "xls" %}
+                                        <i class="fas fa-file-excel"></i>
+                                    {% elif archive.get_file_ext == "docx" or archive.get_file_ext == "doc" %}
+                                        <i class="fas fa-file-word"></i>
+                                    {% else %}
+                                        <i class="far fa-file"></i>
+                                    {% endif %}
+                                    {{ archive.get_file_name }}
+                                </a>
                             {% endif %}
 
 
