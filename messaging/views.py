@@ -37,3 +37,5 @@ def message_list(request):
                    'sent_messages': sent_messages, 'received_messages': received_messages,
                    'all_messages': all_messages, })
 
+
+

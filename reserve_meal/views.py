@@ -5,7 +5,7 @@ from itertools import chain
 from django.views.generic import CreateView,DetailView
 
 # Create your views here.
-class BookStoreDetail(DetailView):
+class ReserveMealDetail(DetailView):
     model = ReserveMeal
     context_object_name = 'meal'
 
@@ -38,5 +38,7 @@ class ReserveMeal_Form(CreateView):
         if current_user.is_authenticated:
             form.instance.sender = current_user
             return super(ReserveMeal_Form, self).form_valid(form)
+
+
 
 

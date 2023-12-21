@@ -32,7 +32,7 @@ DEBUG = int(os.environ.get("DEBUG", 1))
 if os.environ.get("DJANGO_ALLOWED_HOSTS"):
     ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
 else:
-    ALLOWED_HOSTS = ['sfarm.taegon.kr', '127.0.0.1']
+    ALLOWED_HOSTS = []
 # Invalid HTTP_HOST header: 'sfarm.taegon.kr:23030'. You may need to add 'sfarm.taegon.kr' to ALLOWED_HOSTS.
 
 
