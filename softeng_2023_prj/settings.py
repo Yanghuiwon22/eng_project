@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 import os
 from pathlib import Path
 
-import DIRS
 
 # from allauth.socialaccount.models import SocialApp
 #
@@ -99,7 +98,7 @@ TEMPLATES = [
             ],
         },
     },
-    {DIRS: [os.path.join(BASE_DIR, 'templates')]}
+    # {DIRS: [os.path.join(BASE_DIR, 'templates')]}
 ]
 
 WSGI_APPLICATION = 'softeng_2023_prj.wsgi.application'
